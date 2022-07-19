@@ -1,0 +1,40 @@
+<%- include('partials/head')%>
+
+<div id="regiContainer" class="loginRegiContainer">
+  <div id="regiDiv" class="loginRegiDiv">
+    <h1>REGISTER</h1>
+    <div class="loginRegiLogoDiv">
+      <img src="/images/logo.svg" alt="logo">
+    </div>
+    <div class="loginRegiForm">
+      <div class="inputDiv">
+        <label class="labels" for="fName">first name</label><br/>
+        <input class="inputs" type="text" id="fName" name="fName"><br>
+      </div>
+      <div class="inputDiv">
+        <label class="labels" for="lName">last name</label><br/>
+        <input class="inputs" type="text" id="lName" name="lName"><br>
+      </div>
+      <div class="inputDiv">
+        <label class="labels" for="email">email</label><br/>
+        <input class="inputs" type="email" id="email" name="email"><br>
+      </div>
+      <div class="inputDiv">
+        <label class="labels" for="password">password</label><br/>
+        <input class="inputs" type="password" id="password" name="password"><br>
+      </div>
+      <label class="labels" for="permission">Select a permission</label>
+      <select for="permission">
+        <option value="owner">owner</option>
+        <option value="admin">admin</option>
+        <option value="editor">editor</option>
+        <option value="viewer">viewer</option>
+      </select>
+      <div id="regiBtnDiv">
+        <button id="registerBtn" class="loginRegiBtn">SEND REQUEST</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

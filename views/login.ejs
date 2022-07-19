@@ -1,0 +1,25 @@
+<%- include('partials/head')%>
+
+<div id="loginContainer" class="loginRegiContainer">
+  <div id="loginDiv" class="loginRegiDiv">
+    <h1>LOGIN</h1>
+    <div class="loginRegiLogoDiv">
+      <img src="/images/logo.svg" alt="logo">
+    </div>
+    <div class="loginRegiForm">
+      <div class="inputDiv">
+        <label class="labels" for="email">email</label><br/>
+        <input class="inputs" type="email" id="email" name="email"><br>
+      </div>
+      <div class="inputDiv">
+        <label class="labels" for="password">password</label><br/>
+        <input class="inputs" type="password" id="password" name="password"><br>
+      </div>
+      <div>
+        <button id="loginBtn" class="loginRegiBtn">SUBMIT</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

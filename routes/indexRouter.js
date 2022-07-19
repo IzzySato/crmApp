@@ -1,9 +1,15 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const businessInfo = require('../businessInfo.json');
 
-/* GET home page. */
+const routerName = 'index';
+
 router.get('/', (req, res, next) => {
-  res.render('index', { title: 'Express' });
+  res.render(routerName, {
+    title: businessInfo.businessName,
+    style: routerName,
+    navLinks: businessInfo.navLinks
+  });
 });
 
 module.exports = router;

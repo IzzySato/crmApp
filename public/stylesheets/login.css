@@ -1,0 +1,12 @@
+#loginContainer {
+  background-color: var(--login-bgd);
+}
+
+#loginBtn {
+  background-color: var(--login-btn);
+}
+
+#loginBtn:hover {
+  background-color: var(--login-btn-hover);
+  color: var(--font-lighter-color);
+}

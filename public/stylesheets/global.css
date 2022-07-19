@@ -1,0 +1,115 @@
+:root {
+  --bgd-color: #e9e9e9;
+  --font-lighter-color: #ececec;
+  --font-darker-color: #171717;
+  --nav-bgd-color: #173617;
+  --nav-bgd-hover: #0a180a;
+  --nav-mobile-bgd: #92b492;
+  --login-bgd: rgb(1, 1, 74);
+  --register-bgd: rgb(8, 27, 8);
+  --login-btn-hover: rgb(218, 255, 218);
+  --register-btn: rgb(221, 206, 113);
+  --register-btn-hover: rgb(156, 167, 39);
+  --login-btn: rgb(66, 133, 66);
+  --login-btn-hover: rgb(29, 63, 29);
+}
+
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+html, h1, h2, h3, h4 {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: var(--font-darker-color);
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  border: none;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.wrapper {
+  margin: 5% 0 0 30%;
+}
+
+.loginRegiContainer {
+  color: var(--font-lighter-color);
+  height: 100vh;
+  padding-top: 6%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.loginRegiDiv {
+  border: 1px solid grey;
+  border-radius: 10px;
+  padding: 5% 3%;
+  margin: 0 15%;
+}
+
+.loginRegiLogoDiv {
+  width: 30%;
+  margin: 5% auto;
+}
+
+.loginRegiForm {
+  padding: 3% 0;
+}
+
+.inputDiv {
+  margin: 2% 0;
+}
+
+.labels {
+  font-size: 1.4rem;
+}
+
+.inputs {
+  margin: 1% 0;
+  width: 55%;
+  padding: 10px;
+  font-size: 0.8rem;
+  border-radius: 5px;
+}
+
+.loginRegiBtn {
+  font-size: 1.5rem;
+  padding: 2% 7%;
+  border-radius: 6px;
+}
+
+@media only screen and (max-width: 900px) {
+  .wrapper {
+    margin: 5%;
+  }
+
+  .loginRegiDiv {
+    padding: 3% 1%;
+    margin: 0 7%;
+  }
+
+  .inputs {
+    width: 80%;
+  }
+}

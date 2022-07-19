@@ -1,0 +1,40 @@
+{
+  "businessName": "P & M",
+  "navLinks": [
+    {
+      "name": "Dashboard",
+      "icon": "fa-solid fa-table-cells",
+      "link": "/"
+    },
+    {
+      "name": "Customer",
+      "icon": "fa-solid fa-users",
+      "link": "/customer"
+    },
+    {
+      "name": "Configuration",
+      "icon": "fa-solid fa-gear",
+      "link": "/configuration"
+    },
+    {
+      "name": "Member",
+      "icon": "fa-solid fa-user-pen",
+      "link": "/member"
+    },
+    {
+      "name": "Sale",
+      "icon": "fa-solid fa-chart-line",
+      "link": "/sale"
+    },
+    {
+      "name": "Schedule",
+      "icon": "fa-solid fa-calendar-days",
+      "link": "/schedule"
+    },
+    {
+      "name": "Logout",
+      "icon": "fa-solid fa-right-from-bracket",
+      "link": "/logout"
+    }
+  ]
+}

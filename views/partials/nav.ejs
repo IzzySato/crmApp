@@ -1,0 +1,26 @@
+<% if (navLinks.length > 0) { %>
+  <nav class="nav">
+    <div class="logoGrid">
+      <div class="logoDiv">
+        <img class="logo" src="/images/logo.svg" alt="logo">
+      </div>
+      <ul id="mobileIcon">
+        <li class="mobileLine"></li>
+        <li class="mobileLine"></li>
+        <li class="mobileLine"></li>
+      </ul>
+    </div>
+    <ul id="navUl">
+      <% navLinks.forEach((nav) => { %>
+        <li class="navLi">
+          <a class="navLiA" href="<%= nav.link %>">
+            <sapn class="navIcon">
+              <i class="<%= nav.icon %>"></i>
+            </sapn>
+            <%= nav.name %>
+          </a>
+        </li>
+      <% }) %> 
+    </ul>
+  </nav>
+<% } %>

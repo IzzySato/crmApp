@@ -1,0 +1,90 @@
+#mobileIcon {
+  display: none;
+}
+
+.nav {
+  background-color: var(--nav-bgd-color);
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  width: 23%;
+  padding: 3% 0;
+}
+
+.logoDiv {
+  text-align: center;
+  margin-bottom: 9%;
+}
+
+.logo {
+  width: 80%;
+}
+
+.navLi {
+  padding: 10% 15%;
+  font-size: 1.4rem;
+}
+
+.navLi:hover {
+  cursor: pointer;
+  background-color: var(--nav-bgd-hover);
+}
+
+.navIcon {
+  margin-right: 5%;
+}
+
+.navLiA {
+  color: var(--font-lighter-color);
+}
+
+@media only screen and (max-width: 900px) {
+
+  .nav {
+    height: 40px;
+    position: inherit;
+    width: 100%;
+    padding: 4% 0 8% 0;
+  }
+
+  .logoGrid {
+    display: grid;
+    grid-template-columns: 90% auto;
+  }
+
+  .logoDiv {
+    text-align: left;
+    margin-bottom: 0;
+  }
+  
+  .logo {
+    width: 15%;
+  }
+
+  #mobileIcon {
+    display: block;
+  }
+
+  #mobileIcon:hover {
+    cursor: pointer;
+  }
+
+  .mobileLine {
+    background-color: var(--nav-mobile-bgd);
+    width: 50px;
+    height: 8px;
+    margin-bottom: 16%;
+  }
+
+  #navUl {
+    display: none;
+    background-color: var(--nav-bgd-color);
+    width: 100%;
+    position: absolute;
+    padding-top: 5%;
+  }
+
+  .navLi {
+    padding: 4% 2%;
+  }
+}
