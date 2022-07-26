@@ -12,6 +12,15 @@
   --register-btn-hover: rgb(156, 167, 39);
   --login-btn: rgb(66, 133, 66);
   --login-btn-hover: rgb(29, 63, 29);
+  --page-btn-color: rgb(62, 75, 62);
+  --page-btn-color-hover: rgb(25, 63, 25);
+  --edit-color: rgb(103, 103, 99);
+  --delete-color: rgb(216, 101, 101);
+  --edit-color-hover: rgb(83, 83, 52);
+  --delete-color-hover: rgb(161, 56, 56);
+  --permission-color: rgb(73, 78, 209);
+  --google-color: rgb(155, 20, 20);
+  --google-color-hover: rgb(90, 21, 21);
 }
 
 body {
@@ -41,18 +50,26 @@ li {
   padding: 0;
 }
 
+input {
+  border: none;
+  border-radius: 10px;
+}
+
 button {
   border: none;
+  border-radius: 10px;
 }
 
 button:hover {
   cursor: pointer;
 }
 
+/* non login register pages */
 .wrapper {
-  margin: 5% 0 0 30%;
+  margin: 5% 0 0 25%;
 }
 
+/* login register pages */
 .loginRegiContainer {
   color: var(--font-lighter-color);
   height: 100vh;
@@ -62,14 +79,15 @@ button:hover {
 }
 
 .loginRegiDiv {
+  width: 30%;
   border: 1px solid grey;
   border-radius: 10px;
-  padding: 5% 3%;
-  margin: 0 15%;
+  padding: 5% 2% 3% 2%;
+  margin: 0 auto;
 }
 
 .loginRegiLogoDiv {
-  width: 30%;
+  width: 50%;
   margin: 5% auto;
 }
 
@@ -87,7 +105,7 @@ button:hover {
 
 .inputs {
   margin: 1% 0;
-  width: 55%;
+  width: 90%;
   padding: 10px;
   font-size: 0.8rem;
   border-radius: 5px;
@@ -96,7 +114,14 @@ button:hover {
 .loginRegiBtn {
   font-size: 1.5rem;
   padding: 2% 7%;
-  border-radius: 6px;
+  width: 95%;
+  margin-top: 8%;
+}
+
+@media only screen and (max-width: 1100px) {
+  .loginRegiDiv {
+    width: 50%;
+  }
 }
 
 @media only screen and (max-width: 900px) {
@@ -105,11 +130,6 @@ button:hover {
   }
 
   .loginRegiDiv {
-    padding: 3% 1%;
-    margin: 0 7%;
-  }
-
-  .inputs {
     width: 80%;
   }
 }

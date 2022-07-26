@@ -17,9 +17,9 @@
       "link": "/configuration"
     },
     {
-      "name": "Member",
+      "name": "Users",
       "icon": "fa-solid fa-user-pen",
-      "link": "/member"
+      "link": "/user"
     },
     {
       "name": "Sale",

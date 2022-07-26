@@ -1,5 +1,7 @@
+import { login } from './pages/login.js';
 const mobileIcon = document.querySelector('#mobileIcon');
 const navUl = document.querySelector('#navUl');
+const loginBtn = document.querySelector('#loginBtn');
 
 const navToggle = () => {
   (navUl.style.display === 'none') ? 
@@ -7,10 +9,17 @@ const navToggle = () => {
       : navUl.style.display = 'none';
 };
 
+const clickFunc = (btn, func) => {
+  btn.addEventListener('click', () => {
+    func();
+  });
+};
+
 document.addEventListener('DOMContentLoaded', () => {
+  if(loginBtn) {
+    clickFunc(loginBtn, login);
+  }
   if(mobileIcon) {
-    mobileIcon.addEventListener('click', () => {
-      navToggle();
-    });
+    clickFunc(mobileIcon, navToggle);
   }
 });

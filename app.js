@@ -1,32 +1,58 @@
+require('dotenv').config();
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const DB = require('./lib/database/config');
-
-require('dotenv').config();
-
-DB.init();
+const db = require('./lib/database/config');
+const session = require('express-session');
+const passportConfig = require('./lib/auth/passportConfig');
+// const googleLogin = require('./lib/auth/googleStrategy');
+const passport = require('passport');
 
 const indexRouter = require('./routes/indexRouter');
 const loginRouter = require('./routes/loginRouter');
 const registerRouter = require('./routes/registerRouter');
+const userRouter = require('./routes/userRouter');
+// const googleRouter = require('./routes/googleLoginRouter');
+const logoutRouter = require('./routes/logoutRouter');
 
 const app = express();
+
+db.connect();
+
+app.use(express.json());
+app.use(cookieParser());
+app.use(express.urlencoded({
+  extended: false
+}));
+
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false
+}));
+
+passportConfig.init(passport);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+// TODO google login (error google pending)
+// googleLogin.init();
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
+app.use('/user', userRouter);
+// app.use('/auth', googleRouter);
+app.use('/logout', logoutRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

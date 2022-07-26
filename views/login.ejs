@@ -7,17 +7,21 @@
       <img src="/images/logo.svg" alt="logo">
     </div>
     <div class="loginRegiForm">
-      <div class="inputDiv">
-        <label class="labels" for="email">email</label><br/>
-        <input class="inputs" type="email" id="email" name="email"><br>
+        <div class="inputDiv">
+          <label class="labels" for="email">email</label><br/>
+          <input class="inputs" type="email" id="loginEmail" name="email"><br>
+        </div>
+        <div class="inputDiv">
+          <label class="labels" for="password">password</label><br/>
+          <input class="inputs" type="password" id="loginPassword" name="password"><br>
+        </div>
+        <div>
+          <button id="loginBtn" class="loginRegiBtn">SUBMIT</button>
+        </div>
       </div>
-      <div class="inputDiv">
-        <label class="labels" for="password">password</label><br/>
-        <input class="inputs" type="password" id="password" name="password"><br>
-      </div>
-      <div>
-        <button id="loginBtn" class="loginRegiBtn">SUBMIT</button>
-      </div>
+    </div>
+    <div id="googleLoginBtn" class="googleForm loginRegiBtn">
+      <a href="/auth/google">GOOGLE LOGIN</a>
     </div>
   </div>
 </div>
