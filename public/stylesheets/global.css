@@ -19,8 +19,13 @@
   --edit-color-hover: rgb(83, 83, 52);
   --delete-color-hover: rgb(161, 56, 56);
   --permission-color: rgb(73, 78, 209);
+  --permission-bgd: rgb(220, 246, 154);
   --google-color: rgb(155, 20, 20);
   --google-color-hover: rgb(90, 21, 21);
+  --submit-color: rgb(71, 122, 45);
+  --cancel-color: rgb(188, 188, 53);
+  --submit-color-hover: rgb(42, 72, 27);
+  --cancel-color-hover: rgb(109, 109, 31);
 }
 
 body {
@@ -29,7 +34,7 @@ body {
   padding: 0;
 }
 
-html, h1, h2, h3, h4 {
+html, h1, h2, h3, h4, p {
   margin: 0;
   padding: 0;
 }
@@ -51,22 +56,38 @@ li {
 }
 
 input {
-  border: none;
   border-radius: 10px;
 }
 
 button {
   border: none;
   border-radius: 10px;
+  color: var(--font-lighter-color);
 }
 
 button:hover {
   cursor: pointer;
 }
 
+.cencel {
+  background-color: var(--cancel-color);
+}
+
+.cencel:hover {
+  background-color: var(--cancel-color-hover);
+}
+
+.submit {
+  background-color: var(--submit-color);
+}
+
+.submit:hover {
+  background-color: var(--submit-color-hover);
+}
+
 /* non login register pages */
 .wrapper {
-  margin: 5% 0 0 25%;
+  margin: 5% 2% 0 27%;
 }
 
 /* login register pages */
@@ -108,7 +129,6 @@ button:hover {
   width: 90%;
   padding: 10px;
   font-size: 0.8rem;
-  border-radius: 5px;
 }
 
 .loginRegiBtn {

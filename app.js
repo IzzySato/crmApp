@@ -4,7 +4,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const db = require('./lib/database/config');
+const db = require('./lib/database/db_config');
 const session = require('express-session');
 const passportConfig = require('./lib/auth/passportConfig');
 // const googleLogin = require('./lib/auth/googleStrategy');
@@ -14,6 +14,7 @@ const indexRouter = require('./routes/indexRouter');
 const loginRouter = require('./routes/loginRouter');
 const registerRouter = require('./routes/registerRouter');
 const userRouter = require('./routes/userRouter');
+const customerRouter = require('./routes/customerRouter');
 // const googleRouter = require('./routes/googleLoginRouter');
 const logoutRouter = require('./routes/logoutRouter');
 
@@ -51,6 +52,7 @@ app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/user', userRouter);
+app.use('/customer', customerRouter);
 // app.use('/auth', googleRouter);
 app.use('/logout', logoutRouter);
 

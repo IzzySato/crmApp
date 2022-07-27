@@ -20,6 +20,7 @@ const login = async () => {
     } else {
       // TODO message page
       // location.href = `/error/${message}`;
+      console.log(message);
     }
   } catch (err) {
     console.log(err);

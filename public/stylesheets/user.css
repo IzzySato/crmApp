@@ -1,25 +1,19 @@
-#container {
-  margin-left: 4%;
+.totalP {
+  margin-bottom: 2%;
 }
 
-.userBtn {
+.addUserBtn {
   text-transform: uppercase;
   font-size: 1.5rem;
   padding: 2% 3%;
   background-color: var(--page-btn-color);
   color: var(--font-lighter-color);
-  margin-bottom: 5%;
+  margin-bottom: 10%;
+  border-radius: 10px;
 }
 
-.userBtn:hover {
+.addUserBtn:hover {
   background-color: var(--page-btn-color-hover);
-}
-
-.searchDiv {
-  display: grid;
-  gap: 5%;
-  grid-template-columns: 80% auto;
-  margin-right: 3%;
 }
 
 .search {
@@ -39,12 +33,32 @@
 }
 
 .userGrid {
+  border: 1px solid var(--font-darker-color);
+  border-radius: 5px;
+  padding: 3% 2%;
   display: grid;
   grid-template-columns: 70% auto;
   margin-bottom: 1%;
 }
 
+.name {
+  margin-bottom: 2%;
+}
+
+.permissionDiv {
+  margin-top: 1%;
+}
+
+.permissionTitle {
+  font-size: 1.1rem;
+  margin-bottom: 1%;
+}
+
 .userPermission {
+  font-size: 0.9rem;
+  background-color: var(--permission-bgd);
+  padding: 1% 2%;
+  border-radius: 5px;
   color: var(--permission-color);
 }
 

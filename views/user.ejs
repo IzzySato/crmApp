@@ -3,32 +3,32 @@
 <div class="wrapper">
   <div id="container">
     <div class="btnDiv">
-      <button class="userBtn">Add a new user</button>
+      <a href="/user/user_add" class="addUserBtn">Add a new user</a>
     </div>
     <div class="searchDiv">
-      <input type="text" class="search" placeholder="search user e.g. first name, last name, email"/>
-      <select id="permission" name="permission" for="permission">
-        <option value="default">search by permission</option>
-        <option value="owner">owner</option>
-        <option value="admin">admin</option>
-        <option value="editor">editor</option>
-        <option value="viewer">viewer</option>
-      </select>
+      <input type="text" class="search" placeholder="search user e.g. first name, last name, email, or permissions"/>
     </div>
     <div id="usersDataDiv">
-      <p>Total: <%= users.length %></p>
+      <p class="totalP">Total: <%= users.length %></p>
       <h1>All users</h1>
       <hr />
       <ul id="usersUl">
         <% users.forEach(user => { %>
           <li class="userGrid">
             <div class="userInfo">
-              <%= user.firstName %> <%= user.lastName %> (<%= user.email %>)
-                <span class="userPermission"><%= user.permission%></span>
+              <div class="name">
+                <%= user.firstName %> <%= user.lastName %> (<%= user.email %>)
+              </div>
+              <div class="permissionDiv">
+                <p class="permissionTitle">permissions:</p>
+                <% user.permission.forEach( p => { %>
+                  <span class="userPermission" ><%= p %></span>
+                <% })%>
+              </div>
             </div>
             <div>
               <button class="editBtn btn">Edit</button>
-              <button class="deleteBtn btn">Delete</button>
+              <button class="deleteBtn btn">Lock</button>
             </div>
           </li>
         <%})%>
