@@ -3,10 +3,11 @@
 <div class="wrapper">
   <div id="container">
     <div class="btnDiv">
-      <a href="/user/user_add" class="addUserBtn">Add a new user</a>
+      <a href="/user/user_add" class="addUserBtn addBtn">Add a new user</a>
     </div>
     <div class="searchDiv">
       <input type="text" class="search" placeholder="search user e.g. first name, last name, email, or permissions"/>
+      <button class="searchBtn">Search</button>
     </div>
     <div id="usersDataDiv">
       <p class="totalP">Total: <%= users.length %></p>
@@ -22,7 +23,7 @@
               <div class="permissionDiv">
                 <p class="permissionTitle">permissions:</p>
                 <% user.permission.forEach( p => { %>
-                  <span class="userPermission" ><%= p %></span>
+                  <span class="permissionTag" ><%= p %></span>
                 <% })%>
               </div>
             </div>

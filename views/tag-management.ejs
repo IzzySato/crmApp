@@ -1,0 +1,126 @@
+<%- include('partials/head')%>
+
+<div class="wrapper">
+  <div>
+    <div class="inputDiv">
+      <label class="labels" for="company">Select a company</label><br/>
+      <select>
+        <% companies.forEach( company => { %>
+          <option value="<%= company.businessName %>"><%= company.businessName %></option>
+        <% })%>
+      </select>
+    </div>
+    <div>
+      <div>
+        <h2>Available Permission Tags</h2>
+        <div class="tags">
+          <% permissions.forEach( permission => { %>
+            <span class="permissionTag" ><%= permission %></span>
+          <% })%>
+        </div>
+      </div>
+      <div class="tagGrid">
+        <div class="addNewTagDiv tagContainer">
+          <h2>Add New Tag</h2>
+          <hr />
+          <div class="inputDiv">
+            <label class="labels" for="tag"></label>
+            <input class="inputs" type="text" id="tag" name="tag"><br>
+            <button class="submit">Add</button>
+          </div>
+        </div>
+        <div class="removeTagDiv tagContainer">
+          <h2>Remove Tag</h2>
+          <hr />
+          <select>
+            <% permissions.forEach(permission => { %>
+              <option value="<%= permission %>"><%= permission %></option>
+            <% })%>
+          </select><br/>
+          <button class="submit">Remove</button>
+        </div>
+        <div class="assignTagDiv tagContainer">
+          <h2>Assign Tags</h2>
+          <hr />
+          <div class="tagContainer assignDiv">
+            <h2>Admin</h2>
+            <div class="assignGrid">
+              <div class="tags">
+                <% permissions.forEach( permission => { %>
+                  <span class="permissionTag" ><%= permission %></span>
+                <% })%>
+              </div>
+              <div>
+                <select>
+                  <% permissions.forEach(permission => { %>
+                    <option value="<%= permission %>"><%= permission %></option>
+                  <% })%>
+                </select><br/>
+                <button class="submit">Add</button>
+              </div>
+            </div>
+          </div>
+          <div class="tagContainer assignDiv">
+            <h2>Manager</h2>
+            <div class="assignGrid">
+              <div class="tags">
+                <% permissions.forEach( permission => { %>
+                  <span class="permissionTag" ><%= permission %></span>
+                <% })%>
+              </div>
+              <div>
+                <select>
+                  <% permissions.forEach(permission => { %>
+                    <option value="<%= permission %>"><%= permission %></option>
+                  <% })%>
+                </select><br/>
+                <button class="submit">Add</button>
+              </div>
+            </div>
+          </div>
+          <div class="tagContainer assignDiv">
+            <h2>Worker</h2>
+            <div class="assignGrid">
+              <div class="tags">
+                <% permissions.forEach( permission => { %>
+                  <span class="permissionTag" ><%= permission %></span>
+                <% })%>
+              </div>
+              <div>
+                <select>
+                  <% permissions.forEach(permission => { %>
+                    <option value="<%= permission %>"><%= permission %></option>
+                  <% })%>
+                </select><br/>
+                <button class="submit">Add</button>
+              </div>
+            </div>
+          </div>
+          <div class="tagContainer assignDiv">
+            <h2>Viewer</h2>
+            <div class="assignGrid">
+              <div class="tags">
+                <% permissions.forEach( permission => { %>
+                  <span class="permissionTag" ><%= permission %></span>
+                <% })%>
+              </div>
+              <div>
+                <select>
+                  <% permissions.forEach(permission => { %>
+                    <option value="<%= permission %>"><%= permission %></option>
+                  <% })%>
+                </select><br/>
+                <button class="submit">Add</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="backDiv">
+      <a href="/company" class="backBtn">BACK</a>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

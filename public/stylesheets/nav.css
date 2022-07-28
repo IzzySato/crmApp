@@ -2,26 +2,33 @@
   display: none;
 }
 
-.nav {
+.leftNav {
   background-color: var(--nav-bgd-color);
-  height: 100vh;
+  padding: 19% 3%;
   position: absolute;
-  top: 0;
-  padding: 3% 0;
+  height: 100vh;
+  text-align: center;
 }
 
 .logoDiv {
-  text-align: center;
-  margin-bottom: 9%;
+  position: absolute;
+  top: 10%;
+  z-index: 2;
 }
 
 .logo {
-  width: 40%;
+  width: 20%;
+  padding: 5%;
+}
+
+.logo:hover {
+  cursor: pointer;
 }
 
 .navLi {
-  padding: 6% 15%;
+  padding: 2%;
   font-size: 1.4rem;
+  margin-bottom: 80%;
 }
 
 .navLi:hover {
@@ -29,12 +36,74 @@
   background-color: var(--nav-bgd-hover);
 }
 
-.navIcon {
-  margin-right: 5%;
+.iconNames {
+  display: none;
+  margin-left: 5%;
+  margin: 0;
 }
 
 .navLiA {
   color: var(--font-lighter-color);
+}
+
+.rightNav {
+  background-color: var(--nav-top-bgd);
+  text-align: right;
+}
+
+.rightIcon {
+  display: inline-block;
+  color: var(--font-lighter-color);
+  font-size: 4rem;
+  padding-right: 2%;
+}
+
+.rightIcon:hover {
+  cursor: pointer;
+  transform: translateY(25px) rotate(90deg);
+}
+
+.rightNavUl {
+  display: none;
+  padding-top: 3%;
+}
+
+.rightNavLi:hover {
+  background-color: var(--nav-bgd-hover);
+}
+
+.rightNavLiA {
+  display: grid;
+  grid-template-columns: 80% auto;
+  gap: 3%;
+  padding: 3% 2%;
+  font-size: 1.3rem;
+  color: var(--font-lighter-color);
+}
+
+.rightNavNames {
+  text-align: left;
+}
+
+/* override css from js */
+
+.el-hide {
+  display: block;
+}
+
+.displayLeftNav {
+  width: 25%;
+}
+
+.displayLeftNav .navLiA {
+  padding-left: 1%;
+  display: grid;
+  grid-template-columns: 20% auto;
+  text-align: left;
+}
+
+.displayLeftNav .navLi {
+  margin-bottom: 8.7%;
 }
 
 @media only screen and (max-width: 900px) {
@@ -75,8 +144,11 @@
     margin-bottom: 16%;
   }
 
-  #navUl {
+  .navUl {
     display: none;
+  }
+
+  #navUl {
     background-color: var(--nav-bgd-color);
     width: 100%;
     position: absolute;

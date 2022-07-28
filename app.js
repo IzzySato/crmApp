@@ -15,6 +15,7 @@ const loginRouter = require('./routes/loginRouter');
 const registerRouter = require('./routes/registerRouter');
 const userRouter = require('./routes/userRouter');
 const customerRouter = require('./routes/customerRouter');
+const companyRouter = require('./routes/companyRouter');
 // const googleRouter = require('./routes/googleLoginRouter');
 const logoutRouter = require('./routes/logoutRouter');
 
@@ -53,6 +54,7 @@ app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/user', userRouter);
 app.use('/customer', customerRouter);
+app.use('/company', companyRouter);
 // app.use('/auth', googleRouter);
 app.use('/logout', logoutRouter);
 

@@ -1,9 +1,10 @@
-//add class
+const toggleClass = (target, className) => () => 
+  target.classList.toggle(className);
 
-const toggleDisplay = (target) => () => {
-    target.classList.toggle('el-hide');
-  };
+const toggleClasses = (target, className) => () =>
+  target.forEach(t => t.classList.toggle(className));
 
 export {
-  toggleDisplay
+  toggleClass,
+  toggleClasses
 }

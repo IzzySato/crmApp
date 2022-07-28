@@ -1,49 +1,19 @@
 <%- include('partials/head')%>
 
 <div class="wrapper">
-  <div id="confirmDiv" class="confirmDiv">
-    <h2 class="confirmTitle">Are you sure?</h2>
-    <button id="adminAddBtn" class="confirmBtn submit">YES</button>
-    <button class="cencel confirmBtn">NO</button>
+  <div id="addUserConfirm" class="confirmWrapperDiv">
+    <%- include('partials/confirm')%>
   </div>
   <div>
-    <h1>Add a new user</h1>
-    <div class="form">
-      <div class="inputDiv">
-        <label class="labels" for="firstName">first name</label><br/>
-        <input class="inputs" type="text" id="adminAddFirstName" name="firstName"><br>
-      </div>
-      <div class="inputDiv">
-        <label class="labels" for="lastName">last name</label><br/>
-        <input class="inputs" type="text" id="adminAddLastName" name="lastName"><br>
-      </div>
-      <div class="inputDiv">
-        <label class="labels" for="email">email</label><br/>
-        <input class="inputs" type="email" id="adminAddEmail" name="email"><br>
-      </div>
+    <div>
+      <%- include('partials/add-user-form')%>
+    </div>
+    <div>
       <div>
-        <label class="labels" for="permission">Add permissions</label></div><br/>
-        <input id="permissionInput" class="permissionInput" type="text" list="permissions"/>
-        <datalist id="permissions">
-          <% permissions.forEach(permission => { %>
-            <option value="<%= permission %>"><%= permission %></option>
-          <% })%>
-        </datalist>
-        <button id="permissionAdd" class="submit">Add</button>
+        <button id="addUser" class="openConfirmBtns submit">ADD USER</button>
       </div>
-      <div class="selectedPermissionDiv">
-        <h2>Selected Permissions</h2>
-        <ul id="selectedPermissions">
-          <!-- data will insert from javascript/user.js -->
-        </ul>
-      </div>
-      <div class="btnsDiv">
-        <div class="backDiv">
-          <a href="/user" class="backBtn">BACK</a>
-        </div>
-        <div>
-          <button id="addUserBtn" class="submit">ADD USER</button>
-        </div>
+      <div class="backDiv">
+        <a href="/user" class="backBtn">BACK</a>
       </div>
     </div>
   </div>

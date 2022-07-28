@@ -1,0 +1,33 @@
+<div>
+  <h1>Add a new user</h1>
+  <div class="form">
+    <div class="inputDiv">
+      <label class="labels" for="firstName">first name</label><br/>
+      <input class="inputs" type="text" id="adminAddFirstName" name="firstName"><br>
+    </div>
+    <div class="inputDiv">
+      <label class="labels" for="lastName">last name</label><br/>
+      <input class="inputs" type="text" id="adminAddLastName" name="lastName"><br>
+    </div>
+    <div class="inputDiv">
+      <label class="labels" for="email">email</label><br/>
+      <input class="inputs" type="email" id="adminAddEmail" name="email"><br>
+    </div>
+    <div>
+      <label class="labels" for="permission">Add permissions</label></div><br/>
+      <input id="permissionInput" class="permissionInput" type="text" list="permissions"/>
+      <datalist id="permissions">
+        <% permissions.forEach(permission => { %>
+          <option value="<%= permission %>"><%= permission %></option>
+        <% })%>
+      </datalist>
+      <button id="permissionAdd" class="submit">Add</button>
+    </div>
+    <div class="selectedPermissionDiv">
+      <h2>Selected Permissions</h2>
+      <div id="selectedPermissions" class="permissionsDiv">
+        <!-- data will insert from javascript/user.js -->
+      </div>
+    </div>
+  </div>
+</div>

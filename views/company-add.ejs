@@ -1,0 +1,47 @@
+<%- include('partials/head')%>
+
+<div class="wrapper">
+  <div id="addUserAdminConfirm" class="confirmWrapperDiv">
+    <%- include('partials/confirm')%>
+  </div>
+  <div class="companyAddDiv">
+    <h1 class="title">Add a new company</h1>
+    <div class="form">
+      <div class="inputDiv">
+        <label class="labels" for="businessName">Business Name</label><br/>
+        <input class="inputs" type="text" id="businessNameInput" name="businessName"><br>
+      </div>
+      <div class="inputDiv">
+        <label class="labels" for="logo">logo</label><br/>
+        <input class="inputs" type="file" id="logoInput" name="logo"><br>
+      </div>
+      <div class="btnsDiv">
+        <div>
+          <button id="addUserAdmin" class="submit openConfirmBtns">Add Company</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="companyAddDiv">
+    <h2 class="title">Add a new user to the company</h2>
+    <div class="inputDiv">
+      <label class="labels" for="company">Select a company</label><br/>
+      <select>
+        <% companies.forEach( company => { %>
+          <option value="<%= company.businessName %>"><%= company.businessName %></option>
+        <% })%>
+      </select>
+    </div>
+    <div>
+      <%- include('partials/add-user-form')%>
+      <div>
+        <button id="addUserAdmin" class="openConfirmBtns submit">ADD USER</button>
+      </div>
+    </div>
+    <div class="backDiv">
+      <a href="/company" class="backBtn">BACK</a>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

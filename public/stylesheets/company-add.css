@@ -1,0 +1,6 @@
+.companyAddDiv {
+  margin-bottom: 5%;
+  border: 1px solid var(--font-darker-color);
+  border-radius: 10px;
+  padding: 2%;
+}

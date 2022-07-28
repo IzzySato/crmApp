@@ -1,0 +1,39 @@
+.tags {
+  margin: 2% 0;
+}
+
+.tagGrid {
+  display: grid;
+  gap: 2%;
+  grid-template-areas:
+    "add remove"
+    "assign assign"
+}
+
+.tagContainer {
+  border-radius: 10px;
+  padding: 2%;
+  border: 1px solid var(--font-lighter-color);
+}
+
+.assignDiv {
+  margin: 2% 0;
+}
+
+.addNewTagDiv {
+  grid-area: add;
+}
+
+.removeTagDiv {
+  grid-area: remove;
+}
+
+.assignTagDiv {
+  grid-area: assign;
+  margin: 3% 0;
+}
+
+.assignGrid {
+  display: grid;
+  grid-template-columns: 60% auto;
+}
