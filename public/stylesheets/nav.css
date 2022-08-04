@@ -1,10 +1,7 @@
-#mobileIcon {
-  display: none;
-}
-
 .leftNav {
   background-color: var(--nav-bgd-color);
-  padding: 19% 3%;
+  padding: 19% 4%;
+  position: sticky;
   position: absolute;
   height: 100vh;
   text-align: center;
@@ -12,37 +9,43 @@
 
 .logoDiv {
   position: absolute;
-  top: 10%;
   z-index: 2;
 }
 
 .logo {
   width: 20%;
   padding: 5%;
+  margin-left: 2%;
 }
 
 .logo:hover {
   cursor: pointer;
 }
 
-.navLi {
-  padding: 2%;
-  font-size: 1.4rem;
-  margin-bottom: 80%;
+#leftNavUl .rightNavLi {
+  display: none;
+} 
+
+#rightNavUl .leftNavLi {
+  display: none;
 }
 
-.navLi:hover {
+.leftNavLi {
+  margin-bottom: 90%;
+  font-size: 1.4rem;
+}
+
+.leftNavLi:hover {
   cursor: pointer;
   background-color: var(--nav-bgd-hover);
 }
 
-.iconNames {
+.leftIconNames {
   display: none;
-  margin-left: 5%;
-  margin: 0;
 }
 
-.navLiA {
+.leftNavLiA {
+  display: grid;
   color: var(--font-lighter-color);
 }
 
@@ -65,7 +68,11 @@
 
 .rightNavUl {
   display: none;
-  padding-top: 3%;
+  padding: 5% 0;
+}
+
+.rightNavLi {
+  padding-right: 5%;
 }
 
 .rightNavLi:hover {
@@ -74,15 +81,21 @@
 
 .rightNavLiA {
   display: grid;
-  grid-template-columns: 80% auto;
+  grid-template-areas: "icon name";
+  align-content: end;
+  grid-template-columns: auto 15%;
   gap: 3%;
-  padding: 3% 2%;
+  padding: 1%;
   font-size: 1.3rem;
   color: var(--font-lighter-color);
 }
 
-.rightNavNames {
-  text-align: left;
+.rightNavIcon {
+  grid-area: icon;
+}
+
+.rightIconNames {
+  grid-area: name;
 }
 
 /* override css from js */
@@ -91,71 +104,30 @@
   display: block;
 }
 
-.displayLeftNav {
-  width: 25%;
+.displayLeftNav .leftIconNames {
+  display: block;
 }
 
-.displayLeftNav .navLiA {
+.displayLeftNav .leftNavLiA {
   padding-left: 1%;
   display: grid;
+  gap: 15%;
   grid-template-columns: 20% auto;
   text-align: left;
 }
 
-.displayLeftNav .navLi {
-  margin-bottom: 8.7%;
+.displayLeftNav .leftNavLi {
+  margin-bottom: 25%;
 }
 
 @media only screen and (max-width: 900px) {
-
-  .nav {
-    height: 40px;
-    position: inherit;
-    width: 100%;
-    padding: 4% 0 8% 0;
+  .rightNavLiA {
+    grid-template-columns: auto 25%;
   }
+}
 
-  .logoGrid {
-    display: grid;
-    grid-template-columns: 90% auto;
-  }
-
-  .logoDiv {
-    text-align: left;
-    margin-bottom: 0;
-  }
-  
-  .logo {
-    width: 15%;
-  }
-
-  #mobileIcon {
-    display: block;
-  }
-
-  #mobileIcon:hover {
-    cursor: pointer;
-  }
-
-  .mobileLine {
-    background-color: var(--nav-mobile-bgd);
-    width: 50px;
-    height: 8px;
-    margin-bottom: 16%;
-  }
-
-  .navUl {
-    display: none;
-  }
-
-  #navUl {
-    background-color: var(--nav-bgd-color);
-    width: 100%;
-    position: absolute;
-    padding-top: 5%;
-  }
-
-  .navLi {
-    padding: 4% 2%;
+@media only screen and (max-width: 600px) {
+  .rightNavLiA {
+    grid-template-columns: auto 35%;
   }
 }

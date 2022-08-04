@@ -1,9 +1,10 @@
 <%- include('partials/head')%>
+<%- include('partials/nav')%>
 
 <div class="wrapper">
   <div id="container">
     <div class="btnDiv">
-      <a href="/user/user_add" class="addUserBtn addBtn">Add a new user</a>
+      <a href="/user/user-add" class="addUserBtn addBtn">Add a new user</a>
     </div>
     <div class="searchDiv">
       <input type="text" class="search" placeholder="search user e.g. first name, last name, email, or permissions"/>
@@ -22,7 +23,7 @@
               </div>
               <div class="permissionDiv">
                 <p class="permissionTitle">permissions:</p>
-                <% user.permission.forEach( p => { %>
+                <% user.permissions.forEach( p => { %>
                   <span class="permissionTag" ><%= p %></span>
                 <% })%>
               </div>

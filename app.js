@@ -9,6 +9,7 @@ const session = require('express-session');
 const passportConfig = require('./lib/auth/passportConfig');
 // const googleLogin = require('./lib/auth/googleStrategy');
 const passport = require('passport');
+const bodyParser = require('body-parser');
 
 const indexRouter = require('./routes/indexRouter');
 const loginRouter = require('./routes/loginRouter');
@@ -25,8 +26,11 @@ db.connect();
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(express.urlencoded({
-  extended: false
+
+app.use(bodyParser.urlencoded({
+  parameterLimit: 100000,
+  limit: '150mb',
+  extended: true
 }));
 
 app.use(session({

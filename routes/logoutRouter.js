@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
-const routerName = 'logout';
+const mainRouter = 'logout';
 
 router.get('/', (req, res, next) => {
-  res.render(routerName, {
-    style: routerName,
+  res.render(mainRouter, {
+    style: mainRouter,
+    script: mainRouter,
   });
 });
 

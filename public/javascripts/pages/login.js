@@ -1,3 +1,8 @@
+import { clickFunc } from '../../util/page-func-util.js';
+import { addFetch } from '../api/fetch.js';
+
+const loginRoute = '/login';
+
 const login = async () => {
   const email = document.querySelector('#loginEmail').value;
   const password = document.querySelector('#loginPassword').value;
@@ -6,28 +11,17 @@ const login = async () => {
     password
   };
 
-  try {
-    const res = await fetch('/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(user)
-    });
-    const { status, message } = await res.json();
-    if(status === 'success') {
-      location.href = '/';
-    } else {
-      // TODO message page
-      // location.href = `/error/${message}`;
-      console.log(message);
-    }
-  } catch (err) {
-    console.log(err);
-    throw err;
+  const { status, message, data } = await addFetch(user, loginRoute);
+  if(status === 'success') {
+    location.href = '/';
+  } else {
+    // TODO message page
+    // location.href = `/error/${message}`;
+    console.log(message);
   }
 };
 
-export {
-  login
-}
+document.addEventListener('DOMContentLoaded', () => {
+  const loginBtn = document.querySelector('#loginBtn');
+  clickFunc(loginBtn, login);
+});

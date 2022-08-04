@@ -1,0 +1,154 @@
+.totalDiv {
+  display: grid;
+  grid-template-columns: 10% auto;
+  padding: 2% 0;
+}
+
+.btnDiv {
+  margin-bottom: 8%;
+}
+
+.totalDiv {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.total {
+  font-size: 1.2rem;
+}
+
+.lockP {
+  color: var(--font-grey-color);
+}
+
+.filterDiv {
+  margin: 4% 0;
+  padding: 2% 1%;
+  border: 1px solid var(--font-darker-color);
+  border-radius: 10px;
+}
+
+.filterTitle {
+  margin-bottom: 2%;
+}
+
+.filterBtn {
+  font-size: 1.1rem;
+  padding: 1% 2%;
+  background-color: var(--box3-color);
+}
+
+.filterBtn:hover {
+  background-color: var(--box3-color-darker);
+}
+
+.customerLi {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas: "name email phone address btns";
+  gap: 2%;
+  font-size: 1.2rem;
+  padding: 2% 1%;
+}
+
+.name {
+  grid-area: name;
+}
+
+.email {
+  grid-area: email;
+}
+
+.phone {
+  grid-area: phone;
+}
+
+.address {
+  grid-area: address;
+}
+
+.btns {
+  grid-area: btns;
+}
+
+.header {
+  display: grid;
+  gap: 2%;
+  background-color: var(--box1-color);
+  font-size: 1.2rem;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  padding: 2% 1%;
+  color: var(--font-lighter-color);
+}
+
+.edit {
+  border-radius: 10px;
+  color: var(--font-lighter-color);
+  text-align: center;
+}
+
+.title {
+  text-transform: uppercase;
+}
+
+.addForm {
+  background-color: var(--box2-color);
+}
+
+.editForm {
+  background-color: var(--box1-color);
+}
+
+.formDiv {
+  position: absolute;
+  width: 70%;
+  padding: 5% 2%;
+  border-radius: 10px;
+  color: var(--font-lighter-color);
+}
+
+.editAddBtnsDiv {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2%;
+  margin-top: 8%;
+}
+
+.editAddBtns {
+  font-size: 1.3rem;
+  padding: 3% 0;
+}
+
+@media only screen and (max-width: 1000px) {
+  .header {
+    display: none;
+  }
+  .customerLi {
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+    "name"
+    "email"
+    "phone"
+    "address"
+    "btns";
+    font-size: 1.2rem;
+    padding: 2% 1%;
+    margin-bottom: 3%;
+  }
+
+  .customerLi span {
+    margin-bottom: 1%;
+  }
+
+  .btns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 2% 0;
+    gap: 2%;
+  }
+
+  .btn {
+    padding: 3% 0;
+    font-size: 1.2rem;
+  }
+}

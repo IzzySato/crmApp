@@ -1,33 +1,44 @@
 const express = require('express');
-const { getCompanies } = require('../lib/database/dbEngine/companyDbEngine');
-const { getPermissions } = require('../lib/database/dbEngine/userDbEngine');
-const router = express.Router()
+const { getCompanies, addCompany } = require('../lib/database/dbEngine/companyDbEngine');
+const router = express.Router();
 
-const mainRouterName = 'company';
-const addRoute = 'company-add';
+const mainRouter = 'company';
+const addRouter = 'company-add';
 const tagRouter = 'tag-management';
 
 router.get('/', async (req, res, next) => {
-  res.render(mainRouterName, {
-    style: mainRouterName,
+  res.render(mainRouter, {
+    style: mainRouter,
+    scripts: [mainRouter],
     companies: await getCompanies(),
   });
 });
 
-router.get(`/${addRoute}`, async (req, res, next) => {
-  res.render(addRoute, {
-    style: addRoute,
+router.get(`/${addRouter}`, async (req, res, next) => {
+  res.render(addRouter, {
+    style: addRouter,
+    scripts: [mainRouter, addRouter],
     companies: await getCompanies(),
-    permissions: await getPermissions(),
   });
 });
 
 router.get(`/${tagRouter}`, async (req, res, next) => {
   res.render(tagRouter, {
     style: tagRouter,
+    scripts: [mainRouter, tagRouter],
     companies: await getCompanies(),
-    permissions: await getPermissions(),
   });
+});
+
+router.get('/data', async (req, res, next) => {
+  const data = await getCompanies();
+  res.json({ data });
+});
+
+router.post(`/add`, async (req, res, next) => {
+  const newCompany = req.body;
+  await addCompany(newCompany);
+  res.json({ success: true });
 });
 
 module.exports = router;

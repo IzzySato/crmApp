@@ -1,3 +1,4 @@
+import { clickFunc } from '../../util/page-func-util.js';
 const { getUsersByPermission } = require("../../../lib/database/dbEngine/userDbEngine");
 const { sendEmail } = require("../../../lib/email");
 
@@ -18,6 +19,6 @@ const sendEmailToAdminClient = async () => {
   sendEmail(admin[0].email, newUser);
 };
 
-export {
-  sendEmailToAdminClient
-}
+document.addEventListener('DOMContentLoaded', () => {
+
+});

@@ -1,8 +1,9 @@
 <%- include('partials/head')%>
+<%- include('partials/nav')%>
 
 <div class="wrapper">
-  <div id="addUserAdminConfirm" class="confirmWrapperDiv">
-    <%- include('partials/confirm')%>
+  <div class="confirmDiv">
+    <!-- confirmation box will insert from js -->
   </div>
   <div class="companyAddDiv">
     <h1 class="title">Add a new company</h1>
@@ -11,13 +12,9 @@
         <label class="labels" for="businessName">Business Name</label><br/>
         <input class="inputs" type="text" id="businessNameInput" name="businessName"><br>
       </div>
-      <div class="inputDiv">
-        <label class="labels" for="logo">logo</label><br/>
-        <input class="inputs" type="file" id="logoInput" name="logo"><br>
-      </div>
       <div class="btnsDiv">
         <div>
-          <button id="addUserAdmin" class="submit openConfirmBtns">Add Company</button>
+          <button id="addCompanyBtn" class="submit openConfirmBtns">Add Company</button>
         </div>
       </div>
     </div>
@@ -26,10 +23,8 @@
     <h2 class="title">Add a new user to the company</h2>
     <div class="inputDiv">
       <label class="labels" for="company">Select a company</label><br/>
-      <select>
-        <% companies.forEach( company => { %>
-          <option value="<%= company.businessName %>"><%= company.businessName %></option>
-        <% })%>
+      <select id="companySelect">
+        <!-- data will be here from company-add.js -->
       </select>
     </div>
     <div>

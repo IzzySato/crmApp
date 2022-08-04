@@ -2,6 +2,7 @@
   --bgd-color: #e9e9e9;
   --font-lighter-color: #ececec;
   --font-darker-color: #171717;
+  --font-grey-color: #8f8e8e;
   --nav-bgd-color: #173617;
   --nav-bgd-hover: #0a180a;
   --nav-mobile-bgd: #92b492;
@@ -29,6 +30,13 @@
   --cancel-color-hover: rgb(109, 109, 31);
   --search-color: rgb(147, 53, 53);
   --search-color-hover: rgb(113, 42, 42);
+  --box1-color: rgb(167, 167, 98);
+  --box2-color: rgb(24, 94, 70);
+  --box3-color: rgb(24, 58, 94);
+  --box3-color-darker: rgb(11, 28, 46);
+  --shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  --success-color: rgb(107, 169, 63);
+  --fail-color: rgb(152, 34, 34);
 }
 
 body {
@@ -90,8 +98,29 @@ button:hover {
   border-bottom: 1px solid var(--font-darker-color);
 }
 
+
+.btn {
+  font-size: 1.1rem;
+  padding: 2% 4%;
+}
+
+.edit {
+  background-color: var(--edit-color);
+}
+
+.edit:hover {
+  background-color: var(--edit-color-hover);
+}
+
+.lock {
+  background-color: var(--delete-color);
+}
+
+.lock:hover {
+  background-color: var(--delete-color-hover);
+}
+
 .submit {
-  margin: 2% 0;
   padding: 1% 3%;
   font-size: 1rem;
   background-color: var(--submit-color);
@@ -104,6 +133,23 @@ button:hover {
 /* non login register pages */
 .wrapper {
   padding: 6% 2% 0 13%;
+}
+
+.msgDiv {
+  text-align: center;
+  padding: 3% 4%;
+  margin: 0 auto 5% auto;
+  width: 60%;
+  color: var(--font-lighter-color);
+  border-radius: 10px;
+}
+
+.success {
+  background-color: var(--success-color);
+}
+
+.fail {
+  background-color: var(--fail-color);
 }
 
 /* login register pages */
@@ -201,14 +247,12 @@ button:hover {
 }
 
 /* confirm */
-.confirmWrapperDiv {
-  display: none;
-}
 
-.confirmDiv {
+.confirmBox {
   text-align: center;
   background-color: var(--bgd-color);
   position: fixed;
+  top: 12%;
   left: 27%;
   border: 1px solid var(--font-darker-color);
   padding: 5% 0;

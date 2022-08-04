@@ -1,11 +1,13 @@
 const express = require('express');
 const passport = require('passport');
 const router = express.Router();
-const routerName = 'login';
+
+const mainRouter = 'login';
 
 router.get('/', (req, res, next) => {
-  res.render(routerName, {
-    style: routerName,
+  res.render(mainRouter, {
+    style: mainRouter,
+    scripts: [mainRouter],
   });
 });
 

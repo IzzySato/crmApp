@@ -1,36 +1,21 @@
 <%- include('partials/head')%>
+<%- include('partials/nav')%>
 
 <div class="wrapper">
   <div class="companyBtnDiv">
-    <div class="btnDiv">
-      <a href="/company/company-add" class="addCompanyBtn addBtn">Add Company</a>
-    </div>
-    <div class="btnDiv">
-      <a href="/company/tag-management" class="tagBtn addBtn">Tag Management</a>
-    </div>
+    <a href="/company/company-add" class="addCompanyBtn addBtn">Add Company</a>
+    <a href="/company/tag-management" class="tagBtn addBtn">Tag Management</a>
   </div>
   <div class="searchDiv">
-    <input type="text" class="search" placeholder="search company"/>
-    <button class="searchBtn">Search</button>
+    <input id="companySearchInput" type="text" class="search" placeholder="search company"/>
+    <button id="companySearch" class="searchBtn">Search</button>
   </div>
   <div>
-    <p class="totalP">Total: <%= companies.length %></p>
+    <p id="totalCompanyNum" class="totalP"></p>
     <h1>All Companies</h1>
     <hr />
     <ul id="companyUl">
-      <% companies.forEach(company => { %>
-        <li class="companyGrid">
-          <div class="companyInfo">
-            <div class="name">
-              <%= company.businessName %>
-            </div>
-          </div>
-          <div>
-            <button class="editBtn btn">Edit</button>
-            <button class="lockBtn btn">Lock</button>
-          </div>
-        </li>
-      <%})%>
+      <!-- data will be here from company.js -->
     </ul>
   </div>
 </div>

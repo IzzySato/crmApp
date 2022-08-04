@@ -1,105 +1,20 @@
-<%
- const leftNav = [
-    {
-      "name": "Dashboard",
-      "icon": "fa-solid fa-table-cells",
-      "link": "/",
-      "permission": ""
-    },
-    {
-      "name": "Customer",
-      "icon": "fa-solid fa-users",
-      "link": "/customer",
-      "permission": ""
-    },
-    {
-      "name": "Sale",
-      "icon": "fa-solid fa-chart-line",
-      "link": "/sale",
-      "permission": ""
-    },
-    {
-      "name": "Schedule",
-      "icon": "fa-solid fa-calendar-days",
-      "link": "/schedule",
-      "permission": ""
-    },
-    {
-      "name": "Company",
-      "icon": "fa-solid fa-star",
-      "link": "/company",
-      "permission": ""
-    },
-    {
-      "name": "Logout",
-      "icon": "fa-solid fa-right-from-bracket",
-      "link": "/logout",
-      "permission": ""
-    }
-];
- const rightNav = [
- {
-      "name": "Configuration",
-      "icon": "fa-solid fa-gear",
-      "link": "/configuration",
-      "permission": ""
-    },
-    {
-      "name": "Users",
-      "icon": "fa-solid fa-user-pen",
-      "link": "/user",
-      "permission": ""
-    },
-]
- %> 
-<% if (style !== 'login' || style !== 'register') { %>
-  <div class="navWrapper">
-    <nav>
-      <div id="logoDiv" class="logoDiv">
-        <img id="logo" class="logo" src="/images/logo.svg" alt="logo">
-      </div>
-      <div id="leftNav" class="leftNav">
-        <div class="logoGrid">
-          <ul id="mobileIcon">
-            <li class="mobileLine"></li>
-            <li class="mobileLine"></li>
-            <li class="mobileLine"></li>
-          </ul>
-        </div>
-        <ul id="navUl" class="navUl">
-          <% leftNav.forEach((nav) => { %>
-            <li class="navLi">
-              <a class="navLiA" href="<%= nav.link %>">
-                <div class="navIcon">
-                  <i class="<%= nav.icon %>"></i>
-                </div>
-                <div class="iconNames">
-                  <%= nav.name %>
-                </div>
-              </a>
-            </li>
-          <% }) %> 
-        </ul>
-      </div>
-    </nav>
-    <nav class="rightNav">
-      <div class="rightIconDiv">
-        <span id="rightNavIcon" class="rightIcon">&#187;</span>
-      </div>
-      <ul id="rightNavUl" class="rightNavUl">
-        <% rightNav.forEach((nav) => { %>
-          <li class="rightNavLi">
-            <a class="rightNavLiA" href="<%= nav.link %>">
-              <div class="rightNavIconDiv">
-                <i class="<%= nav.icon %>"></i>
-              </div>
-              <div class="rightNavNames">
-                <%= nav.name %>
-              </div>
-            </a>
-          </li>
-        <% }) %> 
+<div class="navWrapper">
+  <nav>
+    <div id="logoDiv" class="logoDiv">
+      <img id="logo" class="logo" src="/images/logo.svg" alt="logo">
+    </div>
+    <div id="leftNav" class="leftNav">
+      <ul id="leftNavUl" class="navUl">
+        <!-- data will here from nav.js -->
       </ul>
-    </nav>
-  </div>
-<% } %>
+    </div>
+  </nav>
+  <nav class="rightNav">
+    <div class="rightIconDiv">
+      <span id="rightNavIcon" class="rightIcon">&#187;</span>
+    </div>
+    <ul id="rightNavUl" class="rightNavUl">
+      <!-- data will here from nav.js -->
+    </ul>
+  </nav>
+</div>

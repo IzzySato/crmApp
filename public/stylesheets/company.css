@@ -1,4 +1,16 @@
 .companyBtnDiv {
   display: grid;
+  gap: 4%;
   grid-template-columns: 1fr 1fr;
+}
+
+.companyGrid {
+  display: grid;
+  padding: 1% 0;
+  font-size: 1.3rem;
+  grid-template-columns: 70% auto;
+}
+
+#totalCompanyNum {
+  padding: 2% 0;
 }

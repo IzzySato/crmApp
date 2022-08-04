@@ -1,17 +1,13 @@
-const permissionInput = document.querySelector('#permissionInput');
-const selectedPermissions = document.querySelector('#selectedPermissions');
-const myPermission = [];
+import { clickFunc } from '../../util/page-func-util.js';
+import { addFetch } from '../api/fetch.js';
 
-const html = (permission) => `
-    <span class="permissionTag">${permission}</span>
-  `;
-
-const displaySelectedPermission = () => {
-  myPermission.push(permissionInput.value);
-  selectedPermissions.innerHTML = myPermission.map(permission => html(permission)).join('');
+const addUser = async () => {
+  const res = await addFetch('/user/add');
 }
 
-
-export {
-  displaySelectedPermission,
-}
+document.addEventListener('DOMContentLoaded', () => {
+  const adminAddBtn = document.querySelector('#adminAddBtn');
+  if(adminAddBtn) {
+    clickFunc(adminAddBtn, addUser);
+  }
+});
