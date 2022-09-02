@@ -1,10 +1,25 @@
-import { clickFunc,
+import { 
   insertHTMLIntoDiv,
   search,
-  formatSearchData } from '../../util/page-func-util.js';
-import { getCustomerById, getCustomers } from '../api/customerAPI.js';
+  lowerCaseData,
+  confirmOpen,
+ } from '../../util/page-func-util.js';
+import {
+  incrementDecrementPage,
+  displaySelectedItem,
+  getPageDots
+} from '../../util/pagination.js';
+import { 
+  getCustomerById,
+  getCustomers } from '../api/customerAPI.js';
 import CustomerForm from '../CustomerForm.js';
-import { lockCustomer } from './customer-func.js';
+import { 
+  lockCustomer,
+  sampleDataInit,
+  deleteCustomers } from './customer-func.js';
+
+const numOfItemPerPage = 10;
+let currentPage = 1;
 
 const customerHTML = ({ 
   _id,
@@ -12,30 +27,35 @@ const customerHTML = ({
   lastName,
   email,
   phone,
-  address
+  street1,
+  city1,
+  province1
 }) => `
 <li class="customerLi">
   <span class="name">
-    ${firstName} ${lastName}
+    ${ firstName } ${ lastName }
   </span>
   <span class="email">
-    ${email}
+    ${ email }
   </span>
   <span class="phone">
-    ${phone}
+    ${ phone }
   </span>
-  <span class="address">
-    ${address}
+  <span class="address1">
+    ${ street1 } ${ city1 } ${ province1 }
   </span>
   <span class="btns">
-    <button data-id="${_id}" class="edit btn">Edit</button>
-    <button data-id="${_id}" class="lock btn openConfirmBtns">Lock</button>
+    <button data-id="${_id}" class="detail btn cusBtn">Detail</button>
+    <button data-id="${_id}" class="edit btn cusBtn">Edit</button>
+    <button data-id="${_id}" class="lock btn openConfirmBtns cusBtn">Lock</button>
   </span>
 </li>`;
 
-const insertTotalCustomers = (data) => {
-  const unLockedCustomers = data.filter(customer => !customer.isLocked);
-  const lockedCustomers = data.filter(customer => customer.isLocked);
+const insertTotalCustomers = (
+  data,
+  unLockedCustomers,
+  lockedCustomers
+  ) => {
   const customerTotal = document.querySelector('.customerTotal');
   const lockedTotalSpan = document.querySelector('.lockedTotalSpan');
   const unlockedTotalSpan = document.querySelector('.unlockedTotalSpan');
@@ -44,74 +64,144 @@ const insertTotalCustomers = (data) => {
   unlockedTotalSpan.innerHTML = unLockedCustomers.length;
 };
 
-const openAddForm = (addEditFormDiv) => {
-  const moveToAddCustomerPage = document.querySelector('#moveToAddCustomerPage');
-  moveToAddCustomerPage.addEventListener('click', () => {
-    const customerForm = new CustomerForm(addEditFormDiv, 'add', {});
-    customerForm.show();
-  });
+const clickEvent = async (
+    target,
+    unLockedCustomers,
+    lockedCustomers,
+    customerUl,
+    incrementBtns,
+    decrementBtns,
+    customerPageDotsDiv,
+    addEditFormDiv
+  ) => {
+
+    if(target.matches('.incrementBtns')) {
+      currentPage++;
+      incrementDecrementPage(
+        'increment',
+        incrementBtns,
+        decrementBtns,
+        currentPage,
+        unLockedCustomers,
+        numOfItemPerPage,
+        customerPageDotsDiv,
+        customerUl,
+        customerHTML
+      );
+    }
+
+    if(target.matches('.decrementBtns')) {
+      currentPage--;
+      incrementDecrementPage(
+        'decrement',
+        incrementBtns,
+        decrementBtns,
+        currentPage,
+        unLockedCustomers,
+        numOfItemPerPage,
+        customerPageDotsDiv,
+        customerUl,
+        customerHTML
+      );
+    }
+
+    if(target.matches('#moveToAddCustomerPage')) {
+      const customerForm = new CustomerForm(addEditFormDiv, 'add', {});
+      customerForm.show();
+    }
+
+    if(target.matches('.lockedFilterBtn')) {
+      insertHTMLIntoDiv(customerUl, lockedCustomers, customerHTML);
+      editLockBtnFunc(addEditFormDiv);
+    }
+
+    if(target.matches('.unLockedFilterBtn')) {
+      insertHTMLIntoDiv(customerUl, unLockedCustomers, customerHTML);
+      editLockBtnFunc(addEditFormDiv);
+    }
+
+    if(target.matches('.searchBtn')) {
+      const searchInput = document.querySelector('#searchInput').value.toLowerCase();
+      const filteredData = search(lowerCaseData(data), searchInput);
+      insertHTMLIntoDiv(customerUl, filteredData, customerHTML);
+      insertTotalCustomers(filteredData);
+      editLockBtnFunc(addEditFormDiv);
+    }
+
+    if(target.matches('.edit')) {
+      const { data } = await getCustomerById(target.dataset.id);
+      const customerForm = new CustomerForm(addEditFormDiv, 'edit', data);
+      customerForm.show();
+    }
+
+    if(target.matches('.lock')) {
+      await lockCustomer(target.dataset.id);
+    }
 };
 
-const editLockBtnFunc = (div) => {
-  const editBtns = document.querySelectorAll('.edit');
-  const lockBtns = document.querySelectorAll('.lock');
-  editBtns.forEach(btn => btn.addEventListener('click', async () => {
-    const { data } = await getCustomerById(btn.dataset.id);
-    const customerForm = new CustomerForm(div, 'edit', data);
-    customerForm.show();
-  }));
-  lockBtns.forEach(btn => btn.addEventListener('click', () => {
-    clickFunc(btn, async () => await lockCustomer(btn.dataset.id));
-  }));
+const customerPageInit = (
+  data,
+  unLockedCustomers,
+  lockedCustomers,
+  customerUl,
+  customerPageDotsDiv
+  ) => {
+
+  insertTotalCustomers(data, unLockedCustomers, lockedCustomers);
+
+  displaySelectedItem(
+    unLockedCustomers,
+    numOfItemPerPage,
+    customerUl,
+    customerHTML,
+    currentPage);
+
+  getPageDots(
+    customerPageDotsDiv,
+    unLockedCustomers,
+    numOfItemPerPage,
+    currentPage);
 };
 
-const quickLockedFilter = (customerUl, data, addEditFormDiv) => {
-  const lockedFilterBtn = document.querySelector('.lockedFilterBtn');
-  clickFunc(lockedFilterBtn, () => {
-    insertHTMLIntoDiv(customerUl, data, customerHTML);
-    editLockBtnFunc(addEditFormDiv);
-  });
-};
-
-const quickUnLockedFilter = (customerUl, data, addEditFormDiv) => {
-  const unlockedFilterBtn = document.querySelector('.unlockedFilterBtn');
-  clickFunc(unlockedFilterBtn, () => {
-    insertHTMLIntoDiv(customerUl, data, customerHTML);
-    editLockBtnFunc(addEditFormDiv);
-  });
-};
-
-const filterFunc = (data, customerUl, addEditFormDiv) => {
-  const searchBtn = document.querySelector('.searchBtn');
-  clickFunc(searchBtn, () => {
-    const searchInput = document.querySelector('#searchInput').value;
-    const searchData = formatSearchData(
-      data,
-      (string) => string.toLowerCase().split(' '),
-      (string) => string.toLowerCase());
-    const filter = search(searchData, searchInput.toLowerCase());
-    const formData = formatSearchData(
-      filter,
-      (array) => array.join(' '),
-      (string) => string.charAt(0).toUpperCase() + string.slice(1));
-    insertHTMLIntoDiv(customerUl, formData, customerHTML);
-    insertTotalCustomers(filter);
-    editLockBtnFunc(addEditFormDiv);
-  });
-};
 
 document.addEventListener('DOMContentLoaded', async () => {
   const customerUl = document.querySelector('#customerUl');
-  const addEditFormDiv = document.querySelector('#addEditForm');
   const companyId = document.querySelector('#container').dataset.id;
   const { data } = await getCustomers(companyId);
   const unLockedCustomers = data.filter(customer => !customer.isLocked);
+  const lockedCustomers = data.filter(customer => customer.isLocked);
+  const incrementBtns = document.querySelector('.incrementBtns');
+  const decrementBtns = document.querySelector('.decrementBtns');
+  const addEditFormDiv = document.querySelector('#addEditForm');
 
-  insertTotalCustomers(data);
-  openAddForm(addEditFormDiv);
-  insertHTMLIntoDiv(customerUl, unLockedCustomers, customerHTML);
-  editLockBtnFunc(addEditFormDiv);
-  quickLockedFilter(customerUl, data, addEditFormDiv);
-  quickUnLockedFilter(customerUl, data, addEditFormDiv);
-  filterFunc(data, customerUl, addEditFormDiv);
+  customerPageInit(
+    data,
+    unLockedCustomers,
+    lockedCustomers,
+    customerUl,
+    customerPageDotsDiv
+  );
+
+  document.addEventListener('click', ({target}) => {
+    clickEvent(
+      target,
+      unLockedCustomers,
+      lockedCustomers,
+      customerUl,
+      incrementBtns,
+      decrementBtns,
+      customerPageDotsDiv,
+      addEditFormDiv
+    );
+  });
+
+  // for test only | delete all customers and insert sample customers
+  const deleteBtn = document.querySelector('#deleteCustomers');
+  const addSampleBtn = document.querySelector('#addSampleData');
+  deleteBtn.addEventListener('click', async () => {
+    await deleteCustomers();
+  });
+  addSampleBtn.addEventListener('click', async () => {
+    await sampleDataInit();
+  });
 });

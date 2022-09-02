@@ -1,13 +1,13 @@
 const express = require('express');
+const router = express.Router();
 const { 
   getCustomersByCompany,
   addCustomer,
   getCustomersById,
   editCustomer,
-  lockCustomer
+  lockCustomer,
+  deleteAllCustomers
 } = require('../lib/database/dbEngine/customerDbEngine');
-const router = express.Router();
-
 const mainRouter = 'customer';
 
 router.get('/', (req, res, next) => {
@@ -39,7 +39,12 @@ router.post('/add', async (req, res, next) => {
     companyId,
     email,
     phone,
-    address,
+    street1,
+    city1,
+    province1,
+    street2,
+    city2,
+    province2,
     isLocked
   } = req.body;
   await addCustomer({
@@ -48,7 +53,12 @@ router.post('/add', async (req, res, next) => {
     companyId,
     email,
     phone,
-    address,
+    street1,
+    city1,
+    province1,
+    street2,
+    city2,
+    province2,
     isLocked
   });
   res.json({ success: true });
@@ -63,6 +73,10 @@ router.patch('/lock', async (req, res, next) => {
   const { _id } = req.body;
   await lockCustomer(_id);
   res.json({ success: true });
+});
+
+router.delete('/delete', async (req, res, next) => {
+  await deleteAllCustomers();
 });
 
 module.exports = router;

@@ -1,9 +1,8 @@
 export default class ConfirmationBox {
-  constructor(div, onYes, onNo = () => {}) {
-    this.div = div;
-    this.onYes = onYes;
-    this.onNo = onNo;
-    this.div.innerHTML = '';
+  constructor() {
+    this.confirmDiv = document.querySelector('.confirmDiv');
+    this.confirmDiv.innerHTML = '';
+    this.confirm = false;
   }
 
   getHTML() {
@@ -16,24 +15,15 @@ export default class ConfirmationBox {
   }
 
   show() {
-    this.div.innerHTML = this.getHTML();
-    const confirmBtn = this.div.querySelector('.submit');
-    const cancelBtn = this.div.querySelector('.cancel');
+    this.confirmDiv.innerHTML = this.getHTML();
+    const confirmBtn = this.confirmDiv.querySelector('.submit');
+    const cancelBtn = this.confirmDiv.querySelector('.cancel');
     cancelBtn.addEventListener('click', () => {
-      this.cancel();
+      this.confirmDiv.innerHTML = '';
     });
-    confirmBtn.addEventListener('click', () => {
-      this.submit();
+    confirmBtn.addEventListener('click', async () => {
+      this.confirmDiv.innerHTML = '';
+      await this.submit();
     });
-  }
-
-  submit() {
-    this.onYes();
-    this.div.innerHTML = '';
-  }
-
-  cancel() {
-    this.div.innerHTML = '';
-    this?.onNo();
   }
 }

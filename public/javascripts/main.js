@@ -1,25 +1,24 @@
 import {
-  toggleHide,
-  toggleClass,
-  toggleClasses
+  toggleHide
 } from '../util/css-util.js';
-import { clickFunc, buildHTML } from '../util/page-func-util.js';
+import { buildHTML } from '../util/page-func-util.js';
 import { navHTML, navData } from './pages/nav.js';
 
+
+const mainClickFunc = (target, rightNavUl) => {
+  if(target.matches('#rightNavIcon')) {
+    toggleHide(rightNavUl);
+  }
+};
+
 document.addEventListener('DOMContentLoaded', async () => {
-  const logo = document.querySelector('#logo');
-  const iconNames = document.querySelectorAll('.leftIconNames');
-  const rightNavIcon = document.querySelector('#rightNavIcon');
   const leftNavUl = document.querySelector('#leftNavUl');
   const rightNavUl = document.querySelector('#rightNavUl');
 
-  if(logo) {
-    clickFunc(logo, toggleClasses(iconNames, 'el-hide'));
-    clickFunc(logo, toggleClass(leftNavUl, 'displayLeftNav'));
-  }
-  if(rightNavIcon) {
-    clickFunc(rightNavIcon, toggleHide(rightNavUl));
-  }
+  document.addEventListener('click', ({ target }) => {
+    mainClickFunc(target, rightNavUl);
+  });
+  
   if(leftNavUl) {
     rightNavUl.innerHTML = buildHTML(navData, navHTML);
     leftNavUl.innerHTML = buildHTML(navData, navHTML);

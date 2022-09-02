@@ -1,16 +1,11 @@
 .totalDiv {
   display: grid;
-  grid-template-columns: 10% auto;
-  padding: 2% 0;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 0 0 5% 0;
 }
 
 .btnDiv {
-  margin-bottom: 8%;
-}
-
-.totalDiv {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  margin-bottom: 4%;
 }
 
 .total {
@@ -44,9 +39,9 @@
 
 .customerLi {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-areas: "name email phone address btns";
-  gap: 2%;
+  grid-template-columns: 15% 22% 15% 22% auto;
+  grid-template-areas: "name email phone address1 btns";
+  grid-gap: 2%;
   font-size: 1.2rem;
   padding: 2% 1%;
 }
@@ -63,12 +58,13 @@
   grid-area: phone;
 }
 
-.address {
-  grid-area: address;
+.address1 {
+  grid-area: address1;
 }
 
 .btns {
   grid-area: btns;
+  text-align: right;
 }
 
 .header {
@@ -76,19 +72,26 @@
   gap: 2%;
   background-color: var(--box1-color);
   font-size: 1.2rem;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 15% 22% 15% 22% auto;
   padding: 2% 1%;
   color: var(--font-lighter-color);
 }
 
-.edit {
+.cusBtn {
   border-radius: 10px;
-  color: var(--font-lighter-color);
   text-align: center;
 }
 
-.title {
-  text-transform: uppercase;
+.detail {
+  background-color: var(--detail-color);
+}
+
+.detail:hover {
+  background-color: var(--detail-color-hover);
+}
+
+.edit {
+  color: var(--font-lighter-color);
 }
 
 .addForm {
@@ -101,8 +104,9 @@
 
 .formDiv {
   position: absolute;
-  width: 70%;
-  padding: 5% 2%;
+  top: 10%;
+  width: 76%;
+  padding: 5% 3%;
   border-radius: 10px;
   color: var(--font-lighter-color);
 }
@@ -119,18 +123,26 @@
   padding: 3% 0;
 }
 
-@media only screen and (max-width: 1000px) {
+.devBtn {
+  background-color: black;
+  color: white;
+  padding: 5%;
+}
+
+@media only screen and (max-width: 1300px) {
   .header {
     display: none;
   }
+
+  .email, .address1 {
+    display: none;
+  }
+
   .customerLi {
-    grid-template-columns: 1fr;
+    grid-template-columns: 30% auto;
     grid-template-areas: 
-    "name"
-    "email"
-    "phone"
-    "address"
-    "btns";
+    "name btns"
+    "phone btns";
     font-size: 1.2rem;
     padding: 2% 1%;
     margin-bottom: 3%;
@@ -142,7 +154,7 @@
 
   .btns {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     margin: 2% 0;
     gap: 2%;
   }
@@ -151,4 +163,7 @@
     padding: 3% 0;
     font-size: 1.2rem;
   }
+}
+
+@media only screen and (max-width: 1000px) {
 }

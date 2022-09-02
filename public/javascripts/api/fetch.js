@@ -43,13 +43,11 @@ const editFetch = async (updateData, route) => {
   }
 };
 
-const deleteFetch = async (id) => {
+const deleteFetch = async (route) => {
   try {
-    const res = await fetch(route, {
+    await fetch(route, {
       method: 'DELETE',
     });
-    const data = await res.json();
-    return data;
   } catch (err) {
     console.log(err);
     throw err;

@@ -44,7 +44,7 @@ const navData = [
   {
     "name": "configuration",
     "icon": "fa-solid fa-gear",
-    "link": "/configuration",
+    "link": "/config",
     "permission": "",
     "position": "right"
   },
@@ -58,13 +58,10 @@ const navData = [
 ];
 
 const navHTML = (data) => `
-<li class="${data.position}NavLi">
+<li class="${data.position}NavLi navLi">
     <a class="${data.position}NavLiA" href="${data.link}">
-      <div class="${data.position}NavIcon">
-        <i class="${data.icon}"></i>
-      </div>
-      <div class="${data.position}IconNames">
-        ${data.name}
+      <div class="${data.position}NavIcon navIconDiv">
+        <i class="${data.icon} navIcon"></i>
       </div>
     </a>
 </li>`;

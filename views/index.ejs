@@ -2,30 +2,32 @@
 <%- include('partials/nav')%>
 
 <div class="wrapper">
-  <div class="indexWrapper">
-    <h2 class="title">Welcome <%= user.firstName %></h2>
-    <div class="dataDiv">
-      <div class="totalCusDiv box box1">
-        <h2 class="boxTitle">Total Customers</h2>
-        <h2 id="totalCustomersDash" class="num">120</h2>
-      </div>
-      <div class="box box2">
-        <h2 class="boxTitle">Monthly Sale</h2>
-        <h2 class="num">$1000</h2>
-      </div>
-      <div class="box box2">
-        <h2 class="boxTitle">Works this month</h2>
-        <h2 class="num">1300</h2>
-      </div>
-      <div class="box box1">
-        <h2 class="boxTitle">Works this Week</h2>
-        <h2 class="num">400</h2>
-      </div>
-    </div>
-    <ul id="dashboardUl" class="dashboardUl">
-      <!-- data will here from nav.js -->
-    </ul>
+  <div class="titleDiv">
+    <h2 class="welcome">Welcome <%= user.firstName %></h2>
+    <h1 class="title">DASHBOARD</h1>
+    <hr/>
   </div>
+  <div class="dataDiv">
+    <div class="totalCusDiv box box1">
+      <h2 class="boxTitle">Total Customers</h2>
+      <h2 id="totalCustomersDash" class="num">120</h2>
+    </div>
+    <div class="box box2">
+      <h2 class="boxTitle">Monthly Sale</h2>
+      <h2 class="num">$1000</h2>
+    </div>
+    <div class="box box2">
+      <h2 class="boxTitle">Works this month</h2>
+      <h2 class="num">1300</h2>
+    </div>
+    <div class="box box1">
+      <h2 class="boxTitle">Works this Week</h2>
+      <h2 class="num">400</h2>
+    </div>
+  </div>
+  <ul id="dashboardUl" class="dashboardUl">
+    <!-- data will here from nav.js -->
+  </ul>
 </div>
 
 <%- include('partials/footer') %>

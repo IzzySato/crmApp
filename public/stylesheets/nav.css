@@ -1,38 +1,43 @@
-.leftNav {
-  background-color: var(--nav-bgd-color);
-  padding: 19% 4%;
-  position: sticky;
-  position: absolute;
-  height: 100vh;
-  text-align: center;
+#leftNav {
+  width: 8%;
 }
 
-.logoDiv {
-  position: absolute;
-  z-index: 2;
+#logoDiv {
+  text-align: center;
+  margin-bottom: 45%;
 }
 
 .logo {
-  width: 20%;
-  padding: 5%;
-  margin-left: 2%;
+  width: 80%;
 }
 
-.logo:hover {
-  cursor: pointer;
+.navIcon {
+  color: var(--nav-icon-color);
 }
+
+.navLi {
+  font-size: 1.4rem;
+}
+
+/* left navigation */
 
 #leftNavUl .rightNavLi {
   display: none;
-} 
+}
 
-#rightNavUl .leftNavLi {
-  display: none;
+#leftNav {
+  background-color: var(--nav-bgd-color);
+  position: fixed;
+  height: 100vh;
+  padding-top: 10%;
+}
+
+.leftNavIcon {
+  text-align: center;
 }
 
 .leftNavLi {
-  margin-bottom: 90%;
-  font-size: 1.4rem;
+  padding: 22% 0 22% 0;
 }
 
 .leftNavLi:hover {
@@ -40,25 +45,33 @@
   background-color: var(--nav-bgd-hover);
 }
 
-.leftIconNames {
+/* right navigation */
+
+#rightNavUl .leftNavLi {
   display: none;
 }
 
-.leftNavLiA {
-  display: grid;
-  color: var(--font-lighter-color);
+.rightNavIcon {
+  text-align: right;
 }
 
 .rightNav {
   background-color: var(--nav-top-bgd);
   text-align: right;
+  position: fixed;
+  width: 100%;
+  top: 0;
+}
+
+.rightNavLi {
+  padding: 2%;
 }
 
 .rightIcon {
   display: inline-block;
   color: var(--font-lighter-color);
   font-size: 4rem;
-  padding-right: 2%;
+  padding-right: 5%;
 }
 
 .rightIcon:hover {
@@ -68,7 +81,6 @@
 
 .rightNavUl {
   display: none;
-  padding: 5% 0;
 }
 
 .rightNavLi {
@@ -79,55 +91,14 @@
   background-color: var(--nav-bgd-hover);
 }
 
-.rightNavLiA {
-  display: grid;
-  grid-template-areas: "icon name";
-  align-content: end;
-  grid-template-columns: auto 15%;
-  gap: 3%;
-  padding: 1%;
-  font-size: 1.3rem;
-  color: var(--font-lighter-color);
-}
-
-.rightNavIcon {
-  grid-area: icon;
-}
-
-.rightIconNames {
-  grid-area: name;
-}
-
 /* override css from js */
 
 .el-hide {
   display: block;
 }
 
-.displayLeftNav .leftIconNames {
-  display: block;
-}
-
-.displayLeftNav .leftNavLiA {
-  padding-left: 1%;
-  display: grid;
-  gap: 15%;
-  grid-template-columns: 20% auto;
-  text-align: left;
-}
-
-.displayLeftNav .leftNavLi {
-  margin-bottom: 25%;
-}
-
 @media only screen and (max-width: 900px) {
-  .rightNavLiA {
-    grid-template-columns: auto 25%;
-  }
 }
 
 @media only screen and (max-width: 600px) {
-  .rightNavLiA {
-    grid-template-columns: auto 35%;
-  }
 }

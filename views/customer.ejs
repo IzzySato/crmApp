@@ -12,19 +12,25 @@
     <!-- add form will be here fro, customer.js -->
   </div>
   <div data-id="<%= companyId %>" id="container">
+    <div class="titleDiv">
+      <h1 class="title">Customers</h1>
+      <hr/>
+    </div>
+    <div class="totalDiv">
+      <p class="total">Total: <span class="customerTotal totalSpan"></span></p>
+      <p class="total lockP">Locked Total: <span class="lockedTotalSpan"></span></p>
+      <p class="total lockP">Unlocked Total: <span class="unlockedTotalSpan"></span></p>
+    </div>
     <div class="btnDiv">
       <button id="moveToAddCustomerPage" class="addUserBtn addBtn">Add a customer</button>
+      <button id="deleteCustomers" class="devBtn">Delete</button>
+      <button id="addSampleData" class="devBtn">Add Sample Data</button>
     </div>
     <div class="searchDiv">
       <input type="text" id="searchInput" class="search" placeholder="search customer e.g. name, email or address"/>
       <button class="searchBtn">Search</button>
     </div>
     <div id="customerDataDiv">
-      <div class="totalDiv">
-        <p class="total">Total: <span class="customerTotal totalSpan"></span></p>
-        <p class="total lockP">Locked Total: <span class="lockedTotalSpan"></span></p>
-        <p class="total lockP">Unlocked Total: <span class="unlockedTotalSpan"></span></p>
-      </div>
       <div class="filterDiv">
         <h2 class="filterTitle">Quick Filter</h2>
         <button class="filterBtn lockedFilterBtn">Locked</button>
@@ -36,12 +42,17 @@
         <span>Name</span>
         <span>Email</span>
         <span>Phone</span>
-        <span>Address</span>
+        <span>Address 1</span>
         <span></span>
       </div>
       <ul id="customerUl">
         <!-- data will be here from customer.js -->
       </ul>
+      <div class="pageDiv">
+        <div class="pageArrow decrementBtns"></div>
+        <div id="customerPageDotsDiv" class="pageDots"></div>
+        <div class="pageArrow incrementBtns">&#10097;</div>
+      </div>
     </div>
   </div>
 </div>
