@@ -1,0 +1,66 @@
+:root {
+  --form-bgd-color: var(--white-color);
+  --cancel-btn-color: rgb(21, 21, 97);
+  --cancel-btn-hover-color: rgb(12, 12, 54);
+  --tag-bgd-color: rgb(229, 229, 229);
+}
+
+.customerTitleDiv {
+  margin-bottom: 5%;
+}
+
+#customerDetailDiv {
+  color: var(--font-med-color);
+  z-index: 3;
+  padding: 3%;
+  background-color: var(--form-bgd-color);
+  box-shadow: var(--box-shadow2);
+  width: 70%;
+  position: fixed;
+}
+
+.detailInfoDiv {
+  display: grid;
+  grid-template-columns: 15% auto;
+  margin-bottom: 5%;
+}
+
+.label, .info {
+  font-size: 1.2rem;
+  font-weight: 200;
+}
+
+#detailCloseBtn {
+  border: none;
+  background-color: transparent;
+  font-size: 1.4rem;
+  border-radius: 0;
+  margin-top: 5%;
+  color: var(--font-darker-color);
+  border-bottom: 1px solid var(--font-darker-color);
+}
+
+.tagDiv h2 {
+  margin-bottom: 3%;
+}
+
+.tags {
+  background-color: var(--tag-bgd-color);
+  border-radius: 10px;
+  margin-right: 2%;
+  padding: 1%;
+}
+
+@media only screen and (max-width: 900px) {
+
+  .label {
+    margin-bottom: 3%;
+    border-bottom: 1px solid black;
+    padding-bottom: 4%;
+  }
+
+  .detailInfoDiv {
+    display: block;
+  }
+}
+

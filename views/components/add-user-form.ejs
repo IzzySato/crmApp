@@ -1,0 +1,26 @@
+<%
+  const availablePermissions = ['owner', 'worker', 'editor', 'viwer'];
+%>
+<div>
+  <h1>Add a new user</h1>
+  <div id="addUserDiv" class="form">
+    <div class="inputDiv">
+      <label class="labels" for="firstName">first name</label><br/>
+      <input class="inputs" type="text" id="firstName" name="firstName"><br>
+    </div>
+    <div class="inputDiv">
+      <label class="labels" for="lastName">last name</label><br/>
+      <input class="inputs" type="text" id="lastName" name="lastName"><br>
+    </div>
+    <div class="inputDiv">
+      <label class="labels" for="email">email</label><br/>
+      <input class="inputs" type="email" id="email" name="email"><br>
+    </div>
+    <div>
+      <% availablePermissions.forEach( permission => { %>
+        <input class="permissions" type="checkbox" name="<%= permission %>" value="<%= permission %>">
+        <label for="<%= permission %>"><%= permission %></label><br>
+      <% }) %>
+    </div>
+  </div>
+</div>

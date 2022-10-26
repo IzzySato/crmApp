@@ -3,10 +3,18 @@ const router = express.Router();
 const { addUser } = require('../lib/database/dbEngine/userDbEngine');
 
 const routerName = 'register';
+const folderName = 'register';
+const styles = [
+  `${folderName}/register`
+];
+const scripts = [
+  `${folderName}/register`
+];
 
 router.get('/', (req, res, next) => {
   res.render(routerName, {
-    style: routerName,
+    styles,
+    scripts
   });
 });
 

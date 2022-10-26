@@ -2,14 +2,27 @@ const express = require('express');
 const router = express.Router();
 const { getAllUsers, addUser } = require('../lib/database/dbEngine/userDbEngine');
 
+const testCompanyId = '63584c7bfbfbb7079e0a68dd';
+
 const mainRouter = 'user';
 const addUserRouter = 'user-add';
+
+const folderName = 'user';
+
+const styles = [
+  `${folderName}/userMain`,
+  `${folderName}/userAddEdit`,
+];
+const scripts = [
+  `${folderName}/userMain`,
+  `${folderName}/userAddEdit`,
+];
 
 router.get('/', async (req, res, next) => {
   const users = await getAllUsers();
   res.render(mainRouter, {
-    style: mainRouter,
-    scripts: [mainRouter],
+    styles,
+    scripts,
     users
   });
 });
@@ -18,10 +31,10 @@ router.get(`/${addUserRouter}`, async (req, res, next) => {
   // TODO change to req.user later
   // const { permissions, companyId } = req.user;
   res.render(addUserRouter, {
-    style: addUserRouter,
-    scripts: [mainRouter, addUserRouter],
+    styles,
+    scripts,
     permissions: ['owner', 'editor'],
-    companyId: '62e97c9162e8674da768aa84'
+    companyId: testCompanyId
   });
 });
 

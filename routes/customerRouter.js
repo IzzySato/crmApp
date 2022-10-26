@@ -1,22 +1,37 @@
 const express = require('express');
 const router = express.Router();
+
+const testCompanyId = '63584c7bfbfbb7079e0a68dd';
+
 const { 
   getCustomersByCompany,
   addCustomer,
   getCustomersById,
   editCustomer,
   lockCustomer,
-  deleteAllCustomers
+  deleteAllCustomers,
 } = require('../lib/database/dbEngine/customerDbEngine');
+
+const folderName = 'customer'
+const styles = [
+  `${folderName}/customerMain`,
+  `${folderName}/customerAddEdit`,
+  `${folderName}/customerDetail`,
+];
+
+const scripts = [
+  `${folderName}/customerMain`
+];
+
 const mainRouter = 'customer';
 
 router.get('/', (req, res, next) => {
   // TODO change to req.user later
   // const { companyId } = req?.user;
   res.render(mainRouter, {
-    style: mainRouter,
-    scripts: [mainRouter],
-    companyId: '62e97c9162e8674da768aa84'
+    styles,
+    scripts,
+    companyId: testCompanyId
   });
 });
 
@@ -45,6 +60,7 @@ router.post('/add', async (req, res, next) => {
     street2,
     city2,
     province2,
+    tags,
     isLocked
   } = req.body;
   await addCustomer({
@@ -59,6 +75,7 @@ router.post('/add', async (req, res, next) => {
     street2,
     city2,
     province2,
+    tags,
     isLocked
   });
   res.json({ success: true });

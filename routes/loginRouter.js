@@ -3,11 +3,18 @@ const passport = require('passport');
 const router = express.Router();
 
 const mainRouter = 'login';
+const folderName = 'login';
+const styles = [
+  `${folderName}/login`,
+];
+const scripts = [
+  `${folderName}/login`,
+];
 
 router.get('/', (req, res, next) => {
   res.render(mainRouter, {
-    style: mainRouter,
-    scripts: [mainRouter],
+    styles,
+    scripts,
   });
 });
 

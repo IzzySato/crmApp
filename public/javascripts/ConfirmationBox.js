@@ -8,7 +8,7 @@ export default class ConfirmationBox {
   getHTML() {
     return `
     <div class="confirmBox">
-      <h2 class="confirmTitle">Are you sure?</h2>
+      <h2 class="confirmTitle">${this.confirmMsg}</h2>
       <button class="confirmBtn submit confirmedSubmit">YES</button>
       <button class="cancel confirmBtn">NO</button>
     </div>`;

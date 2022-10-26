@@ -1,38 +1,21 @@
 const express = require('express');
-const { getCompanies, addCompany } = require('../lib/database/dbEngine/companyDbEngine');
+const { 
+  getCompanyById,
+  getCompanies,
+  addCompany,
+ } = require('../lib/database/dbEngine/companyDbEngine');
+
 const router = express.Router();
 
-const mainRouter = 'company';
-const addRouter = 'company-add';
-const tagRouter = 'tag-management';
-
-router.get('/', async (req, res, next) => {
-  res.render(mainRouter, {
-    style: mainRouter,
-    scripts: [mainRouter],
-    companies: await getCompanies(),
-  });
-});
-
-router.get(`/${addRouter}`, async (req, res, next) => {
-  res.render(addRouter, {
-    style: addRouter,
-    scripts: [mainRouter, addRouter],
-    companies: await getCompanies(),
-  });
-});
-
-router.get(`/${tagRouter}`, async (req, res, next) => {
-  res.render(tagRouter, {
-    style: tagRouter,
-    scripts: [mainRouter, tagRouter],
-    companies: await getCompanies(),
-  });
-});
-
-router.get('/data', async (req, res, next) => {
+router.get('/getAllcompanies', async (req, res, next) => {
   const data = await getCompanies();
   res.json({ data });
+});
+
+router.get('/getCompanyById', async (req, res, next) => {
+  const { companyId } = req.query;
+  const data = await getCompanyById(companyId);
+  res.json(data);
 });
 
 router.post(`/add`, async (req, res, next) => {

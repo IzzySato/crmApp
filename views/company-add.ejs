@@ -1,5 +1,5 @@
-<%- include('partials/head')%>
-<%- include('partials/nav')%>
+<%- include('components/head')%>
+<%- include('components/nav')%>
 
 <div class="wrapper">
   <div class="confirmDiv">
@@ -10,7 +10,19 @@
     <div class="form">
       <div class="inputDiv">
         <label class="labels" for="businessName">Business Name</label><br/>
-        <input class="inputs" type="text" id="businessNameInput" name="businessName"><br>
+        <input class="inputs" type="text" id="businessName" name="businessName"><br>
+      </div>
+      <div class="inputDiv">
+        <label class="labels" for="address">Business Address</label><br/>
+        <input class="inputs" type="text" id="address" name="address"><br>
+      </div>
+      <div class="inputDiv">
+        <label class="labels" for="phone">Phone</label><br/>
+        <input class="inputs" type="text" id="phone" name="phone"><br>
+      </div>
+      <div class="inputDiv">
+        <label class="labels" for="tags">Avaiable tags, add more by comma: (e.g. local, important)</label><br/>
+        <input class="inputs" type="text" id="tags" name="tags"><br>
       </div>
       <div class="btnsDiv">
         <div>
@@ -28,15 +40,15 @@
       </select>
     </div>
     <div>
-      <%- include('partials/add-user-form')%>
+      <%- include('components/add-user-form')%>
       <div>
         <button id="addUserAdmin" class="openConfirmBtns submit">ADD USER</button>
       </div>
     </div>
     <div class="backDiv">
-      <a href="/company" class="backBtn">BACK</a>
+      <a href="/dev" class="backBtn">BACK</a>
     </div>
   </div>
 </div>
 
-<%- include('partials/footer') %>
+<%- include('components/footer') %>

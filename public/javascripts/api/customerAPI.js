@@ -1,9 +1,9 @@
 import { fetchJSON } from "./fetch.js";
 
-const customerRouter = '/customer';
+const router = '/customer';
 
 const getCustomers = async (companyId) =>
-  await fetchJSON(`${customerRouter}/getAllCustomers?companyId=${companyId}`);
+  await fetchJSON(`${router}/getAllCustomers?companyId=${companyId}`);
 
 const getCustomersLength = async (companyId) => {
   const { data } = await getCustomers(companyId);
@@ -11,10 +11,10 @@ const getCustomersLength = async (companyId) => {
 };
 
 const getCustomerById = async (customerId) =>
-  await fetchJSON(`${customerRouter}/getCustomer?id=${customerId}`);
+  await fetchJSON(`${router}/getCustomer?id=${customerId}`);
 
 export {
   getCustomers,
   getCustomersLength,
-  getCustomerById
+  getCustomerById,
 }

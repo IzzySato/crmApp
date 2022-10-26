@@ -1,0 +1,21 @@
+:root {
+  --register-bgd: rgb(8, 27, 8);
+  --register-btn: rgb(221, 206, 113);
+  --register-btn-hover: rgb(156, 167, 39);
+}
+
+#regiContainer {
+  background-color: var(--register-bgd);
+}
+
+#registerBtn {
+  background-color: var(--register-btn);
+}
+
+#registerBtn:hover {
+  background-color: var(--register-btn-hover);
+}
+
+#regiBtnDiv {
+  margin-top: 5%;
+}

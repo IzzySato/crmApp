@@ -2,7 +2,7 @@ import {
   toggleHide
 } from '../util/css-util.js';
 import { buildHTML } from '../util/page-func-util.js';
-import { navHTML, navData } from './pages/nav.js';
+import { navHTML, navData } from './components/nav.js';
 
 
 const mainClickFunc = (target, rightNavUl) => {

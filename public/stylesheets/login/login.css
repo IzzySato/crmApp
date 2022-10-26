@@ -1,0 +1,37 @@
+:root {
+  --login-bgd: rgb(1, 1, 74);
+  --login-btn-hover: rgb(218, 255, 218);
+  --login-btn: rgb(66, 133, 66);
+  --login-btn-hover: rgb(29, 63, 29);
+  --google-color: rgb(155, 20, 20);
+  --google-color-hover: rgb(90, 21, 21);
+}
+
+#loginContainer {
+  background-color: var(--login-bgd);
+}
+
+#loginBtn {
+  background-color: var(--login-btn);
+  color: var(--font-lighter-color);
+}
+
+#loginBtn:hover {
+  background-color: var(--login-btn-hover);
+}
+
+#googleLoginBtn {
+  margin: 5% auto 0 auto;
+  width: 30%;
+  background-color: var(--google-color);
+  border-radius: 10px;
+}
+
+#googleLoginBtn:hover {
+  cursor: pointer;
+  background-color: var(--google-color-hover);
+}
+
+#googleLoginBtn a {
+  color: var(--font-lighter-color);
+}

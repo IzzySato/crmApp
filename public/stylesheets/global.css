@@ -3,45 +3,39 @@
   --font-lighter-color: #ececec;
   --font-darker-color: #171717;
   --font-grey-color: #8f8e8e;
-  --nav-bgd-color: #173617;
-  --nav-bgd-hover: #0a180a;
-  --nav-mobile-bgd: #92b492;
-  --nav-top-bgd: rgb(13, 132, 86);
-  --nav-icon-color: #ffffff;
-  --login-bgd: rgb(1, 1, 74);
-  --register-bgd: rgb(8, 27, 8);
-  --login-btn-hover: rgb(218, 255, 218);
-  --register-btn: rgb(221, 206, 113);
-  --register-btn-hover: rgb(156, 167, 39);
-  --login-btn: rgb(66, 133, 66);
-  --login-btn-hover: rgb(29, 63, 29);
-  --page-btn-color: rgb(62, 75, 62);
-  --page-btn-color-hover: rgb(25, 63, 25);
-  --edit-color: rgb(103, 103, 99);
-  --delete-color: rgb(216, 101, 101);
-  --edit-color-hover: rgb(83, 83, 52);
-  --detail-color: rgb(171, 171, 29);
-  --detail-color-hover: rgb(134, 134, 45);
+  --white-color: #efefef;
+  --black-color: #1a1a1a;
+  --light-grey-color: #eae8e8;
+  --med-grey-color: #474646;
+  --dark-grey-color: #505050;
+  --red-color: #af7d7d;
+  --green-color: #477a2d;
+  --yellow-color: #dfdf77;
+  --title-font-color: var(--font-darker-color);
+  --page-btn-color: #3e4b3e;
+  --page-btn-color-hover: #193f19;
+  --delete-color: #d86565;
   --delete-color-hover: rgb(161, 56, 56);
   --permission-color: rgb(73, 78, 209);
   --permission-bgd: rgb(220, 246, 154);
-  --google-color: rgb(155, 20, 20);
-  --google-color-hover: rgb(90, 21, 21);
-  --submit-color: rgb(71, 122, 45);
-  --cancel-color: rgb(188, 188, 53);
+  --submit-color: var(--green-color);
+  --cancel-color: var(--yellow-color);
   --submit-color-hover: rgb(42, 72, 27);
   --cancel-color-hover: rgb(109, 109, 31);
-  --search-color: rgb(147, 53, 53);
-  --search-color-hover: rgb(113, 42, 42);
   --box1-color: rgb(167, 167, 98);
   --box2-color: rgb(24, 94, 70);
   --box3-color: rgb(24, 58, 94);
   --box3-color-darker: rgb(11, 28, 46);
   --shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  --success-color: rgb(107, 169, 63);
-  --fail-color: rgb(152, 34, 34);
-  --dots-color: rgb(43, 70, 43);
-  --current-dot: rgb(147, 31, 31);
+  --success-color: var(--green-color);
+  --fail-color: var(--red-color);
+  --page-arrow-color: var(--med-grey-color);
+  --dots-color: var(--med-grey-color);
+  --current-dot: var(--red-color);
+  --func-header-color: rgb(202, 221, 202);
+  --confirm-bgd-color: var(--white-color);
+  --box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  --box-shadow2: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 body {
@@ -85,11 +79,16 @@ button:hover {
   cursor: pointer;
 }
 
+input:focus, textarea:focus {
+  outline: none;
+}
+
 .titleDiv {
   margin-bottom: 3%;
 }
 
 .title {
+  color: var(--title-font-color);
   text-transform: uppercase;
   font-size: 2.2rem;
   margin-bottom: 1%;
@@ -108,26 +107,9 @@ button:hover {
   border-bottom: 1px solid var(--font-darker-color);
 }
 
-
 .btn {
   font-size: 1.1rem;
   padding: 2% 4%;
-}
-
-.edit {
-  background-color: var(--edit-color);
-}
-
-.edit:hover {
-  background-color: var(--edit-color-hover);
-}
-
-.lock {
-  background-color: var(--delete-color);
-}
-
-.lock:hover {
-  background-color: var(--delete-color-hover);
 }
 
 .submit {
@@ -140,9 +122,16 @@ button:hover {
   background-color: var(--submit-color-hover);
 }
 
+.notes {
+  font-size: 0.8rem;
+  color: var(--font-grey-color);
+  line-height: 1.6;
+  margin: 1% 0;
+}
+
 /* non login register pages */
 .wrapper {
-  padding: 9% 5% 5% 16%;
+  padding: 13% 5% 5% 16%;
 }
 
 .msgDiv {
@@ -190,7 +179,7 @@ button:hover {
 }
 
 .inputDiv {
-  margin: 2% 0;
+  margin: 1% 0;
 }
 
 .labels {
@@ -199,10 +188,10 @@ button:hover {
 }
 
 .inputs {
-  margin: 1% 0;
-  width: 70%;
+  margin-bottom: 1%;
+  width: 100%;
   padding: 5px;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 .loginRegiBtn {
@@ -212,49 +201,25 @@ button:hover {
   margin-top: 8%;
 }
 
-.addressDiv {
-  margin: 10% 0;
-}
-
-.btnDiv {
-  margin-bottom: 4%;
-}
-
-.searchDiv {
-  display: grid;
-  gap: 5%;
-  grid-template-columns: 80% auto;
-  margin: 2% 0;
-}
-
 .search {
   font-size: 1.2rem;
-  width: 100%;
   padding: 1%;
   border-radius: 5px;
+  box-shadow: var(--box-shadow);
+  border: none;
 }
 
-.searchBtn {
-  background-color: var(--search-color);
-  color: var(--font-lighter-color);
-  border-radius: 10px;
+.funcBtn {
+  font-size: 1rem;
+  padding: 1% 2%;
+  border-radius: 5px;
+  background-color: var(--white-color);
+  color: var(--font-grey-color);
+  box-shadow: var(--box-shadow);
 }
 
-.searchBtn:hover {
-  background-color: var(--search-color-hover);
-}
-
-.addBtn {
-  text-transform: uppercase;
-  font-size: 1.5rem;
-  padding: 2% 3%;
-  background-color: var(--page-btn-color);
-  color: var(--font-lighter-color);
-  border-radius: 10px;
-}
-
-.addBtn:hover {
-  background-color: var(--page-btn-color-hover);
+.funcBtn:hover {
+  color: var(--med-grey-color);
 }
 
 .totalP {
@@ -266,19 +231,19 @@ button:hover {
 
 .confirmBox {
   text-align: center;
-  background-color: var(--bgd-color);
+  background-color: var(--confirm-bgd-color);
   position: fixed;
   top: 12%;
   left: 27%;
   border: 1px solid var(--font-darker-color);
-  padding: 5% 0;
+  padding: 5%;
   border-radius: 10px;
   width: 50%;
-  z-index: 3;
+  z-index: 5;
 }
 
 .confirmTitle {
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   margin-bottom: 5%;
 }
 
@@ -333,6 +298,10 @@ button:hover {
   cursor: pointer;
 }
 
+.pageArrow i {
+  color: var(--page-arrow-color);
+}
+
 .pageDots {
   display: inline-flex;
   gap: 10px;
@@ -353,6 +322,11 @@ button:hover {
 
 .currentDot {
   background-color: var(--current-dot);
+}
+
+.box {
+  box-shadow: var(--box-shadow);
+  border-radius: 10px;
 }
 
 @media only screen and (max-width: 1100px) {

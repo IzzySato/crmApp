@@ -1,0 +1,308 @@
+:root {
+  --edit-color: rgb(100, 100, 100);
+  --detail-color: rgb(153, 203, 153);
+  --tag-bgd-color: var(--light-grey-color);
+  --delete-color: var(--dark-grey-color);
+  --delete-note-color: var(--med-grey-color);
+  --filter-hover-font-color: rgb(224, 162, 47);
+}
+
+.titleDiv {
+  margin: 0;
+}
+
+.title {
+  border-bottom: 1px solid var(--title-font-color);
+  padding-bottom: 1%;
+}
+/* function header */
+
+.funcHeaderDiv {
+  box-shadow: var(--box-shadow);
+  margin: 4% 0;
+  display: grid;
+  border-radius: 10px;
+  grid-template-columns: 20% 20% auto;
+  padding: 1%;
+}
+
+.fa-arrow-down-a-z, .fa-filter {
+  margin-right: 3%;
+}
+
+.sortDiv, .filterDiv {
+  position: relative;
+}
+
+.sortDiv:hover, .filterDiv:hover {
+  cursor: pointer;
+}
+
+.sortDiv p, .filterDiv p {
+  display: flex;
+  justify-items: center;
+  font-size: 1.2rem;
+}
+
+.fa-sort-down {
+  margin-left: 2%;
+}
+
+.sortByUl, .filterUlDiv {
+  padding: 5%;
+  border-radius: 5px;
+  margin-top: 26px;
+  position: absolute;
+  display: none;
+  background-color: var(--white-color);
+  box-shadow: var(--box-shadow);
+  z-index: 4;
+}
+
+.openSortByUl, .openFilterUl {
+  display: block;
+}
+
+.ulTitle {
+  margin-bottom: 6%;
+  font-weight: 400;
+}
+
+.filterByUl {
+  width: 500px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 5%;
+  margin-bottom: 5%;
+}
+
+.sortByUl li, .filterByUl li {
+  font-size: 1.1rem;
+  margin-bottom: 5%;
+  padding-bottom: 2%;
+  border-bottom: 1px solid transparent;
+}
+
+.sortByUl li:hover, .filterByUl li:hover {
+  cursor: pointer;
+  color: var(--filter-hover-font-color);
+  border-bottom: 1px solid var(--filter-hover-font-color);
+}
+
+.btnDiv {
+  display: grid;
+  grid-template-columns: auto 25% 25%;
+  grid-gap: 2%;
+  justify-content: end;
+}
+
+/* total */
+
+.totalDiv {
+  display: grid;
+  grid-template-columns: 20% auto;
+  margin: 4% 0;
+}
+
+.total {
+  font-size: 1.2rem;
+  margin-right: 2%;
+  display: flex;
+  align-items: center;
+}
+
+/* search input box */
+
+.searchDiv {
+  width: 80%;
+  position: relative;
+}
+
+#searchInput {
+  padding-left: 40px;
+}
+
+.placeHolders {
+  top: 9px;
+  left: 10px;
+  position: absolute;
+  font-size: 1.1rem;
+  color: var(--font-grey-color);
+}
+
+.serachIcon {
+  margin-right: 1%;
+}
+
+.search {
+  width: 100%;
+}
+
+/* customer list */
+
+#customerUl {
+  margin-bottom: 7%;
+}
+
+.customerLi {
+  display: grid;
+  grid-template-columns: 13% 15% 12% 19% 15% auto;
+  grid-template-areas: "name email phone address1 tag btns";
+  grid-gap: 2%;
+  font-size: 1.2rem;
+  border-bottom: 1px solid var(--font-grey-color);
+  padding: 2% 1%;
+}
+
+.name {
+  grid-area: name;
+}
+
+.email {
+  grid-area: email;
+  font-size: 1rem;
+}
+
+.phone {
+  grid-area: phone;
+}
+
+.address1 {
+  grid-area: address1;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.tagContainer {
+  grid-area: tag;
+}
+
+.btns {
+  grid-area: btns;
+  text-align: right;
+}
+
+.tag {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 3%;
+}
+
+.tagSpan {
+  text-align: center;
+  font-size: 0.8rem;
+  background-color: var(--tag-bgd-color);
+  padding: 2% 4%;
+  border-radius: 5px;
+}
+
+.tag .moreThree {
+  display: none;
+}
+
+.visibleTag .moreThree {
+  display: block;
+}
+
+.moreDots {
+  background-color: transparent;
+}
+
+.moreDots:hover {
+  cursor: pointer;
+}
+
+.hideMoreDots {
+  display: none;
+}
+
+.header {
+  display: grid;
+  gap: 2%;
+  font-size: 1.2rem;
+  grid-template-columns: 13% 15% 12% 19% 15% auto;
+  padding: 1%;
+  color: var(--font-grey-color);
+  border-bottom: 1px solid var(--font-grey-color);
+  border-top: 1px solid var(--font-grey-color);
+  margin-bottom: 3%;
+}
+
+.btn {
+  font-size: 1.5rem;
+}
+
+.detailEditBtn {
+  background-color: transparent;
+}
+
+.detail {
+  color: var(--detail-color);
+}
+
+.edit {
+  color: var(--edit-color);
+}
+
+.delete {
+  color: var(--delete-color);
+}
+
+.deleteNotes {
+  font-weight: 100;
+  font-size: 0.9rem;
+  display: block;
+  margin-top: 3%;
+  line-height: 1.6;
+  color: var(--delete-note-color);
+}
+
+.editAddBtns {
+  font-size: 1.3rem;
+  padding: 3% 0;
+}
+
+.devBtn {
+  background-color: black;
+  color: white;
+  font-size: 1.2rem;
+  padding: 2%;
+}
+
+@media only screen and (max-width: 1300px) {
+  .header {
+    display: none;
+  }
+
+  .tagContainer, .address1 {
+    display: none;
+  }
+
+  .customerLi {
+    grid-template-columns: 40% 40% auto;
+    grid-template-areas: 
+    "name email btns"
+    "phone email btns";
+    font-size: 1.2rem;
+    padding: 2% 1%;
+    margin-bottom: 3%;
+  }
+
+  .customerLi span {
+    margin-bottom: 1%;
+  }
+
+  .btns {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 2% 0;
+    gap: 2%;
+  }
+
+  .btn {
+    padding: 3% 0;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+}

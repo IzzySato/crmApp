@@ -1,0 +1,159 @@
+:root {
+  --nav-mobile-bgd: #92b492;
+  --nav-top-font: rgb(109, 109, 109);
+  --nav-top-hov-font: rgb(78, 78, 78);
+  --nav-left-font: rgb(240, 238, 238);
+  --nav-left-hov-font: rgb(183, 180, 180);
+  --nav-left-bgd-color: rgb(86, 91, 86);
+  --nav-top-bgd-color: rgb(238, 238, 238);
+  --nav-name-bgd-color: #92b492;
+}
+
+.navIconDiv {
+  position: relative;
+}
+
+#logoDiv {
+  text-align: center;
+  margin-bottom: 45%;
+}
+
+.logo {
+  width: 80%;
+}
+
+.navLi {
+  font-size: 1.4rem;
+}
+
+/* left navigation */
+#leftNav {
+  width: 8%;
+}
+
+#leftNavUl .rightNavLi {
+  display: none;
+}
+
+#leftNav {
+  background-color: var(--nav-left-bgd-color);
+  position: fixed;
+  height: 100vh;
+  padding-top: 10%;
+}
+
+.leftNavIcon {
+  text-align: center;
+}
+
+.leftNavLi {
+  padding: 22% 0 22% 0;
+}
+
+.leftNavLi:hover {
+  cursor: pointer;
+}
+
+.leftNavLi:hover .navName {
+  display: block;
+  color: var(--nav-left-font);
+}
+
+.leftNavLi:hover .navIcon {
+  display: block;
+  color: var(--nav-left-hov-font);
+}
+
+.leftNavIcon .navName {
+  top: 120%;
+  left: 2%;
+  padding: 5%;
+  font-size: 0.5rem;
+  position: absolute;
+  display: none;
+}
+
+.leftNavIcon .navIcon {
+  color: var(--nav-left-font);
+}
+
+/* right navigation */
+
+.rightNav {
+  z-index: 7;
+}
+
+#rightNavUl .leftNavLi {
+  display: none;
+}
+
+.rightNavIcon {
+  display: grid;
+  grid-template-columns: 70% auto;
+  justify-content: right;
+  grid-gap: 2%;
+}
+
+.rightNav {
+  background-color: var(--nav-top-bgd-color);
+  box-shadow: var(--box-shadow);
+  text-align: right;
+  position: fixed;
+  width: 100%;
+  top: 0;
+}
+
+.rightNavLi {
+  padding: 2%;
+}
+
+.rightNavIcon .navIcon {
+  color: var(--nav-top-font);
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
+.rightIcon {
+  display: inline-block;
+  font-size: 4rem;
+  padding-right: 3%;
+}
+
+.rightIcon:hover {
+  cursor: pointer;
+  transform: translateY(25px) rotate(90deg);
+}
+
+.rightNavUl {
+  display: none;
+}
+
+.rightNavLi {
+  padding-right: 5%;
+}
+
+.rightNavIcon .navName {
+  font-size: 1rem;
+}
+
+.rightNavLi .navIconDiv {
+  padding-bottom: 1%;
+}
+
+.rightNavLi:hover .navIconDiv {
+  color: var(--nav-top-hov-font);
+  border-bottom: 1px solid var(--nav-top-hov-font);
+}
+
+/* override css from js */
+
+.el-hide {
+  display: block;
+}
+
+@media only screen and (max-width: 900px) {
+}
+
+@media only screen and (max-width: 600px) {
+}

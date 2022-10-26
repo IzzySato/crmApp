@@ -1,60 +1,111 @@
-<%- include('partials/head')%>
-<%- include('partials/nav')%>
+<%- include('components/head')%>
+  <%- include('components/nav')%>
 
-<div class="wrapper">
-  <div id="msgDiv">
-    <!-- message will be here from customer-add.js -->
-  </div>
-  <div class="confirmDiv">
-    <!-- confirmation box will insert from js -->
-  </div>
-  <div id="addEditForm">
-    <!-- add form will be here fro, customer.js -->
-  </div>
-  <div data-id="<%= companyId %>" id="container">
-    <div class="titleDiv">
-      <h1 class="title">Customers</h1>
-      <hr/>
-    </div>
-    <div class="totalDiv">
-      <p class="total">Total: <span class="customerTotal totalSpan"></span></p>
-      <p class="total lockP">Locked Total: <span class="lockedTotalSpan"></span></p>
-      <p class="total lockP">Unlocked Total: <span class="unlockedTotalSpan"></span></p>
-    </div>
-    <div class="btnDiv">
-      <button id="moveToAddCustomerPage" class="addUserBtn addBtn">Add a customer</button>
-      <button id="deleteCustomers" class="devBtn">Delete</button>
-      <button id="addSampleData" class="devBtn">Add Sample Data</button>
-    </div>
-    <div class="searchDiv">
-      <input type="text" id="searchInput" class="search" placeholder="search customer e.g. name, email or address"/>
-      <button class="searchBtn">Search</button>
-    </div>
-    <div id="customerDataDiv">
-      <div class="filterDiv">
-        <h2 class="filterTitle">Quick Filter</h2>
-        <button class="filterBtn lockedFilterBtn">Locked</button>
-        <button class="filterBtn unlockedFilterBtn">Unlocked</button>
+    <div class="wrapper">
+      <div id="msgDiv">
+        <!-- message will be here from customer-add.js -->
       </div>
-      <h1>All Customers</h1>
-      <hr />
-      <div class="header">
-        <span>Name</span>
-        <span>Email</span>
-        <span>Phone</span>
-        <span>Address 1</span>
-        <span></span>
+      <div class="confirmDiv">
+        <!-- confirmation box will insert from javascripts/ConfirmationBox.js -->
       </div>
-      <ul id="customerUl">
-        <!-- data will be here from customer.js -->
-      </ul>
-      <div class="pageDiv">
-        <div class="pageArrow decrementBtns"></div>
-        <div id="customerPageDotsDiv" class="pageDots"></div>
-        <div class="pageArrow incrementBtns">&#10097;</div>
+      <div id="addEditForm">
+        <!-- add form will be here from javascripts/CustomerForm.js -->
       </div>
-    </div>
-  </div>
-</div>
+      <div id="detailDiv">
+        <!-- Detail will be here from javascripts/CustomerDetail.js -->
+      </div>
+      <div data-id="<%= companyId %>" id="container">
+        <div class="titleDiv">
+          <h1 class="title">Customers</h1>
+        </div>
+        <div class="funcHeaderDiv">
+          <div class="sortDiv">
+            <p class="sortP">
+              <i class="fa-solid fa-arrow-down-a-z"></i>
+              Sort<i class="fa-solid fa-sort-down sortDownIcon"></i>
+            </p>
+            <ul class="sortByUl">
+              <li data-name ="firstName" class="sortFname sortLi">First Name A-Z</li>
+              <li data-name ="lastName" class="sortLname sortLi">Last Name A-Z</li>
+              <li data-name ="email" class="sortEmail sortLi">email A-Z</li>
+            </ul>
+          </div>
+          <div class="filterDiv">
+            <p class="filterP">
+              <i class="fa-solid fa-filter"></i>
+              Filter<i class="fa-solid fa-sort-down filterDownIcon"></i>
+            </p>
+            <div class="filterUlDiv">
+              <h2 class="ulTitle">Locations:</h2>
+              <ul class="filterLocationByUl filterByUl">
+                <li data-field="city1" data-name="vancouver" class="filterLi">Vancouver</li>
+                <li data-field="city1" data-name="north vancouver" class="filterLi">North Vancouver</li>
+                <li data-field="city1" data-name="richmond" class="filterLi">Richmond</li>
+                <li data-field="city1" data-name="burnaby" class="filterLi">Burnaby</li>
+                <li data-field="city1" data-name="coquitlam" class="filterLi">Coquiltlam</li>
+                <li data-field="city1" data-name="surrey" class="filterLi">Surrey</li>
+                <li data-field="city1" data-name="mission" class="filterLi">Mission</li>
+                <li data-field="city1" data-name="whistler" class="filterLi">Whistler</li>
+                <li data-field="city1" data-name="abbotsford" class="filterLi">Abbotsford</li>
+              </ul>
+              <h2 class="ulTitle">Tags:</h2>
+              <ul class="filterTagUl filterByUl">
+                <!-- insert from customerMain.js -->
+              </ul>
+            </div>
+          </div>
+          <div class="btnDiv">
+            <span></span>
+            <button id="moveToAddCustomerPage" class="addCustomerBtn funcBtn">
+              Add customer <i class="fa-sharp fa-solid fa-plus"></i>
+            </button>
+            <button id="exportCustomerBtn" class="exportBtn funcBtn">
+              Export <i class="fa-sharp fa-solid fa-file-export"></i>
+            </button>
 
-<%- include('partials/footer') %>
+            <!-- <button id="deleteCustomers" class="devBtn">Delete</button>
+            <button id="addSampleData" class="devBtn">Add Sample Data</button> -->
+          </div>
+        </div>
+        <div class="totalDiv">
+          <p class="total">Total: <span class="customerTotal totalSpan"></span>
+          </p>
+          <div class="searchDiv">
+            <input type="text"
+                  id="searchInput"
+                  class="search"
+                  aria-describedby="searchInput-hint"
+                  placeholder="search customer name, email, tag or address"/>
+            <span id="searchInput-hint" class="placeHolders">
+              <i class="serachIcon fa-solid fa-magnifying-glass"></i>
+            </span>
+          </div>
+        </div>
+        <div id="customerDataDiv">
+          <div class="header">
+            <span>Name</span>
+            <span>Email</span>
+            <span>Phone</span>
+            <span>Address 1</span>
+            <span>Tags</span>
+            <span></span>
+          </div>
+          <ul id="customerUl">
+            <!-- data will be here from javascripts/pages/customerMain.js -->
+          </ul>
+          <div class="pageDiv">
+            <div class="pageArrow decrementBtns">
+              <!-- decrement icon will be here when click increment util/pagination.js-->
+            </div>
+            <div id="customerPageDotsDiv" class="pageDots">
+              <!-- dots will be here util/pagination.js -->
+            </div>
+            <div class="pageArrow incrementBtns">
+              <i class="fa-solid fa-forward"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%- include('components/footer') %>
