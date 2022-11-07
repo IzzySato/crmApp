@@ -1,26 +1,4 @@
-:root {
-  --form-bgd-color: var(--white-color);
-}
-
-.formDiv {
-  background-color: var(--form-bgd-color);
-  z-index: 3;
-  position: absolute;
-  top: 10%;
-  width: 60%;
-  padding: 4% 3%;
-  border-radius: 10px;
-  color: var(--font-med-color);
-  box-shadow: var(--box-shadow2);
-}
-
-.cusAddEditTitle {
-  text-transform: uppercase;
-  font-size: 2rem;
-  margin-bottom: 5%;
-}
-
-.cusInputDiv {
+/* .customerForm {
   display: grid;
   grid-template-columns: 20% auto;
   grid-template-areas: 
@@ -28,13 +6,11 @@
 }
 
 .labels {
-  font-size: 1.1rem;
   grid-area: label;
 }
 
 .inputs {
   grid-area: input;
-  border: none;
 }
 
 .addressDiv {
@@ -76,4 +52,4 @@
   grid-template-columns: 1fr 1fr;
   gap: 2%;
   margin-top: 8%;
-}
+} */

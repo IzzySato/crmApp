@@ -1,0 +1,73 @@
+.form {
+  display: flex;
+  justify-content: center;
+}
+
+.warningMsgDiv {
+  padding: 1% 2%;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  color: var(--red);
+}
+
+.addEditForm {
+  background-color: var(--white);
+  z-index: 3;
+  width: 60%;
+  padding: 4% 3%;
+  position: absolute;
+  border-radius: 5px;
+  color: var(--font-med-color);
+  box-shadow: var(--box-shadow2);
+}
+
+.formTitle {
+  font-size: 1.5rem;
+  font-weight: 100;
+  padding-bottom: 1%;
+  border-bottom: 1px solid var(--med-grey);
+  margin-bottom: 5%;
+}
+
+.inputDiv {
+  margin: 2% 0;
+}
+
+.labels {
+  font-size: 1.1rem;
+  padding-right: 3%;
+}
+
+.inputs {
+  margin: 2% 0;
+  width: 100%;
+  padding: 5px;
+  font-size: 1.1rem;
+  border: none;
+  box-shadow: var(--box-shadow);
+}
+
+.inputs::placeholder {
+  font-size: 0.8rem;
+  color: var(--font-light-grey-color);
+}
+
+.inputTitle {
+  font-size: 1.2rem;
+  font-weight: 100;
+}
+
+.checkbox {
+  margin: 2% 1% 1% 0;
+}
+
+.checkboxInput {
+  margin-right: 2%;
+}
+
+.editAddBtnsDiv {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10%;
+  margin-top: 4%;
+}

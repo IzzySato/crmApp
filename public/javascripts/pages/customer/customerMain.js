@@ -5,12 +5,12 @@ import {
 } from '../../../util/page-func-util.js';
 
 import {
-  incrementDecrementPage,
-  displaySelectedItem,
-  getPageDots
+  displayPagination
 } from '../../../util/pagination.js';
 
 import {
+  addCustomer,
+  editCustomer,
   getCustomerById,
   getCustomers,
 } from '../../api/customerAPI.js';
@@ -19,18 +19,18 @@ import {
   getCompanyById
 } from '../../api/companyAPI.js';
 
-import CustomerDelete from '../../CustomerDelete.js';
 import CustomerDetail from '../../CustomerDetail.js';
-import CustomerForm from '../../CustomerForm.js';
 
 import {
   deleteCustomers,
   sampleDataInit
 } from '../../developmentOnly/customerDevelopment.js';
+import CustomerForm from '../../Forms/customerForm.js';
 
 const pageName = 'customer';
 let currentPage = 1;
 let selectedCustomers = [];
+let allCustomers = [];
 
 const insertTotalCustomers = (
   data
@@ -45,72 +45,93 @@ const insertTagsToFilter = (avaiableTags) => {
     `<li data-field="tags" data-name="${tag}" class="filterLi">${tag}</li>`).join('');
 };
 
+const searchFunc = (unLockedCustomers) => {
+  const searchInput = document.querySelector('#searchInput').value.toLowerCase();
+  if(searchInput === '') {
+    selectedCustomers = unLockedCustomers;
+  } else {
+    selectedCustomers = search(lowerCaseCustomerData(selectedCustomers), searchInput);
+  }
+
+  displayPagination(
+    currentPage,
+    selectedCustomers,
+    pageName);
+
+  insertTotalCustomers(selectedCustomers);
+};
+
 const clickEvent = async (
   target,
   avaiableTags
 ) => {
 
-  if (target.matches('.incrementBtns, .fa-forward')) {
+  if (target.matches('.nextDiv, .fa-chevron-right, .nextP')) {
     currentPage++;
-    incrementDecrementPage(
-      'increment',
+    displayPagination(
       currentPage,
       selectedCustomers,
       pageName
     );
   }
 
-  if (target.matches('.decrementBtns, .fa-backward')) {
+  if (target.matches('.prevDiv, .fa-chevron-left, .prevP')) {
     currentPage--;
-    incrementDecrementPage(
-      'decrement',
+    displayPagination(
       currentPage,
       selectedCustomers,
       pageName
     );
+  }
+
+  if(target.matches('.pageNum')) {
+    const skipTo = target.dataset.page;
+    currentPage = Number(skipTo);
+    displayPagination(
+      currentPage,
+      selectedCustomers,
+      pageName);
   }
 
   const sortUl = document.querySelector('.sortByUl');
 
-  if (target.matches('.sortDiv, .sortP, .sortDownIcon .fa-arrow-down-a-z')) {
+  if (target.matches('.sortDiv, .sortP, .sortDownIcon, .fa-arrow-down-a-z, .sortText')) {
+    console.log('sort');
     sortUl.classList.toggle('openSortByUl');
   }
 
   if (target.matches('.sortLi')) {
     const sortBy = target.dataset.name;
     sort(selectedCustomers, sortBy);
-    console.log('after');
-    displaySelectedItem(
+    displayPagination(
+      currentPage,
       selectedCustomers,
-      pageName,
-      currentPage);
+      pageName);
     sortUl.classList.remove('openSortByUl');
   }
 
   const filterUlDiv = document.querySelector('.filterUlDiv');
 
-  if (target.matches('.filterDiv, .filterUlDiv, .filterP, .fa-filter, .filterDownIcon')) {
+  if (target.matches('.filterDiv, .filterUlDiv, .filterP, .fa-filter, .filterDownIcon, .filterText')) {
     filterUlDiv.classList.toggle('openFilterUl');
   }
 
   if (target.matches('.filterLi')) {
     const filterBy = target.dataset.name;
     const field = target.dataset.field;
-    selectedCustomers = selectedCustomers.filter((customer) => (field === 'tags') ?
+    selectedCustomers = allCustomers.filter((customer) => (field === 'tags') ?
       customer[field].includes(filterBy) : customer[field].toLowerCase() === filterBy);
-    displaySelectedItem(
-      selectedCustomers,
-      pageName,
-      currentPage);
-
-    getPageDots(
-      selectedCustomers,
-      pageName,
-      currentPage);
+      displayPagination(
+        currentPage,
+        selectedCustomers,
+        pageName);
 
     insertTotalCustomers(selectedCustomers);
-
     filterUlDiv.classList.remove('openFilterUl');
+  }
+
+  if(target.matches('.placeHolders, .serachIcon')) {
+    searchFunc();
   }
 
   if (target.matches('#exportCustomerBtn')) {
@@ -125,18 +146,39 @@ const clickEvent = async (
     exportPDF(selectedCustomers, formatter, 'customers');
   }
 
-  const addEditFormDiv = document.querySelector('#addEditForm');
-
-  if (target.matches('#moveToAddCustomerPage')) {
-    const customerForm = new CustomerForm(avaiableTags, addEditFormDiv, 'add', {}, 'Add the customer?');
-    customerForm.show();
+  if (target.matches('.addCustomerBtn, .addIcon')) {
+    const customerInfo = {
+      crud: 'add',
+      data: {
+        avaiableTags,
+      },
+      submitFunc: addCustomer,
+      successMsg: (newCustomer) => `added a new customer ${newCustomer.firstName} ${newCustomer.lastName}`,
+      onBeforeSubmitFunc: (newCustomer) => {
+        newCustomer.isLocked = false;
+        if (!newCustomer.province1) {
+          newCustomer.province1 = 'BC';
+        }
+      },
+    };
+    const CustomerAddForm = new CustomerForm(customerInfo);
+    CustomerAddForm.showForm();
   }
 
   if (target.matches('.edit, .editIcon')) {
     const customerId = target.dataset.id;
     const { data } = await getCustomerById(customerId);
-    const customerForm = new CustomerForm(avaiableTags, addEditFormDiv, 'edit', data, 'Edit the customer?');
-    customerForm.show();
+    const customerInfo = {
+      crud: 'edit',
+      data: {
+        current: data,
+        avaiableTags,
+      },
+      submitFunc: editCustomer,
+      successMsg: (customer) => `update the customer ${customer.firstName} ${customer.lastName}`,
+    };
+    const CustomerEditForm = new CustomerForm(customerInfo);
+    CustomerEditForm.showForm();
   }
 
   if (target.matches('.detail, .detailIcon')) {
@@ -146,10 +188,10 @@ const clickEvent = async (
     customerDetail.show();
   }
 
-  if (target.matches('.delete, .deleteIcon')) {
-    const customerDelete = new CustomerDelete('Delete the customer? <span class="deleteNotes">*The data will be still there but you cannot see on the table. To see deleted customer go to configuration/customers</span>');
-    customerDelete.show();
-  }
+  // if (target.matches('.delete, .deleteIcon')) {
+  //   const customerDelete = new CustomerDelete('Delete the customer? <span class="deleteNotes">*The data will be still there but you cannot see on the table. To see deleted customer go to configuration/customers</span>');
+  //   customerDelete.show();
+  // }
 
   if (target.matches('.moreDots, .moreDotsIcon')) {
     const customerId = target.dataset.id;
@@ -164,25 +206,21 @@ const customerPageInit = (
   data,
   avaiableTags
 ) => {
-
   insertTotalCustomers(data);
   insertTagsToFilter(avaiableTags);
-  displaySelectedItem(
-    data,
-    pageName,
-    currentPage);
-
-  getPageDots(
-    data,
-    pageName,
-    currentPage);
+  displayPagination(
+    currentPage,
+    selectedCustomers,
+    pageName);
 };
 
 document.addEventListener('DOMContentLoaded', async () => {
   const companyId = document.querySelector('#container').dataset.id;
   const { avaiableTags } = await getCompanyById(companyId);
   const customers = await getCustomers(companyId);
-  selectedCustomers = customers.data.filter(customer => !customer.isLocked);
+  const unLockedCustomers = customers.data.filter(customer => !customer.isLocked);
+  selectedCustomers = unLockedCustomers;
+  allCustomers = unLockedCustomers;
 
   customerPageInit(
     selectedCustomers,
@@ -196,27 +234,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     );
   });
 
-  document.addEventListener('keypress', ({ target }) => {
-    if (target.matches('#searchInput')) {
-      const searchInput = document.querySelector('#searchInput').value.toLowerCase();
-      selectedCustomers = search(lowerCaseCustomerData(selectedCustomers), searchInput);
-
-      displaySelectedItem(
-        selectedCustomers,
-        pageName,
-        currentPage);
-
-      getPageDots(
-        selectedCustomers,
-        pageName,
-        currentPage);
-
-      insertTotalCustomers(selectedCustomers);
+  document.addEventListener('keypress', (e) => {
+    if (e.target.matches('#searchInput') && e.key === 'Enter') {
+      searchFunc(unLockedCustomers);
     }
   });
 
   // for test only | delete all customers and insert sample customers
-
 
   // const deleteBtn = document.querySelector('#deleteCustomers');
   // const addSampleBtn = document.querySelector('#addSampleData');

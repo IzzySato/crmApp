@@ -1,0 +1,17 @@
+.msgContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.msgDiv {
+  text-align: center;
+  position: fixed;
+  padding: 3% 4%;
+  margin: 0 auto 5% auto;
+  width: 60%;
+  color: var(--font-darker-color);
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+  background-color: var(--white);
+  z-index: 4;
+}

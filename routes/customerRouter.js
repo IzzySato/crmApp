@@ -12,7 +12,7 @@ const {
   deleteAllCustomers,
 } = require('../lib/database/dbEngine/customerDbEngine');
 
-const folderName = 'customer'
+const folderName = 'customer';
 const styles = [
   `${folderName}/customerMain`,
   `${folderName}/customerAddEdit`,
@@ -48,36 +48,9 @@ router.get('/getCustomer', async (req, res, next) => {
 });
 
 router.post('/add', async (req, res, next) => {
-  const {
-    firstName,
-    lastName,
-    companyId,
-    email,
-    phone,
-    street1,
-    city1,
-    province1,
-    street2,
-    city2,
-    province2,
-    tags,
-    isLocked
-  } = req.body;
-  await addCustomer({
-    firstName,
-    lastName,
-    companyId,
-    email,
-    phone,
-    street1,
-    city1,
-    province1,
-    street2,
-    city2,
-    province2,
-    tags,
-    isLocked
-  });
+  const newCustomer = req.body;
+  newCustomer.companyId = testCompanyId;
+  await addCustomer(newCustomer);
   res.json({ success: true });
 });
 

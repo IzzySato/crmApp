@@ -1,8 +1,12 @@
 :root {
-  --form-bgd-color: var(--white-color);
-  --cancel-btn-color: rgb(21, 21, 97);
-  --cancel-btn-hover-color: rgb(12, 12, 54);
-  --tag-bgd-color: rgb(229, 229, 229);
+  --form-bgd-color: var(--white);
+  --cancel-btn-color: var(--med-grey);
+  --cancel-btn-hover-color: var(--dark-grey);
+  --tag-bgd-color: var(--white);
+}
+.box {
+  display: flex;
+  justify-content: center;
 }
 
 .customerTitleDiv {

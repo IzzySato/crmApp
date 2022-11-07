@@ -1,20 +1,22 @@
 export default class Message {
-  constructor(div, status, msg, prevLocation) {
-    this.div = div;
-    this.status = status;
+  constructor(msg, prevLocation) {
     this.msg = msg;
     this.prevLocation = prevLocation;
   }
 
   getHTML() {
     return `
-    <div class="msgDiv ${this.status}">
-      <h2>${this.msg}</h2>
-    </div>`;
+    <div class="msgContainer">
+      <div class="msgDiv">
+        <h2>Successfully ${this.msg}</h2>
+      </div>
+    </div>
+`;
   }
 
   show() {
-    this.div.innerHTML = this.getHTML();
+    const div = document.querySelector('#msgDiv');
+    div.innerHTML = this.getHTML();
     setTimeout(() => location.href = `/${this.prevLocation}`, 2000);
   }
 }

@@ -1,33 +1,58 @@
 <%- include('components/head')%>
-<%- include('components/nav')%>
+  <%- include('components/nav')%>
 
-<div class="wrapper">
-  <div class="titleDiv">
-    <h2 class="welcome">Welcome <%= user.firstName %></h2>
-    <h1 class="title">DASHBOARD</h1>
-    <hr/>
-  </div>
-  <div class="dataDiv">
-    <div class="totalCusDiv box box1">
-      <h2 class="boxTitle">Total Customers</h2>
-      <h2 id="totalCustomersDash" class="num">120</h2>
+    <div class="wrapper" data-id="<%= companyId %>" id="container">
+      <div class="titleDiv">
+        <h1 class="title">Overview</h1>
+      </div>
+      <div class="dataDiv">
+        <div class="totalCusDiv box box1">
+          <h2 class="boxTitle">Total Customers</h2>
+          <h2 id="totalCustomerDiv" class="num"></h2>
+        </div>
+        <div class="box box2">
+          <h2 class="boxTitle">Monthly Sale</h2>
+          <h2 class="num">$1000</h2>
+        </div>
+        <div class="box box2">
+          <h2 class="boxTitle">Jobs this month</h2>
+          <h2 class="num">1300</h2>
+        </div>
+        <div class="box box1">
+          <h2 class="boxTitle">Jobs this Week</h2>
+          <h2 class="num">400</h2>
+        </div>
+      </div>
+      <div class="chartContainer">
+        <!-- work bar -->
+        <div class="chatDiv">
+          <h2 class="subTitle">Monthly Number of Jobs</h2>
+          <canvas id="workChart">
+            <!-- data insert from javascript/index.js -->
+          </canvas>
+        </div>
+        <!-- work doughnut chart -->
+        <div class="chatDiv">
+          <h2 class="subTitle">Monthly Number of Jobs By Services</h2>
+          <canvas id="workDoughnutChart">
+            <!-- data insert from javascript/index.js -->
+          </canvas>
+        </div>
+        <!-- sale bar -->
+        <div class="chatDiv">
+          <h2 class="subTitle">Monthly Sales</h2>
+          <canvas id="saleChart">
+            <!-- data insert from javascript/index.js -->
+          </canvas>
+        </div>
+        <!-- sale doughnut chart -->
+        <div class="chatDiv">
+          <h2 class="subTitle">Monthly Number of Sales By Services</h2>
+          <canvas id="saleDoughnutChart">
+            <!-- data insert from javascript/index.js -->
+          </canvas>
+        </div>
+      </div>
     </div>
-    <div class="box box2">
-      <h2 class="boxTitle">Monthly Sale</h2>
-      <h2 class="num">$1000</h2>
-    </div>
-    <div class="box box2">
-      <h2 class="boxTitle">Works this month</h2>
-      <h2 class="num">1300</h2>
-    </div>
-    <div class="box box1">
-      <h2 class="boxTitle">Works this Week</h2>
-      <h2 class="num">400</h2>
-    </div>
-  </div>
-  <ul id="dashboardUl" class="dashboardUl">
-    <!-- data will here from nav.js -->
-  </ul>
-</div>
 
-<%- include('components/footer') %>
+    <%- include('components/footer') %>

@@ -1,37 +1,47 @@
 :root {
-  --edit-color: rgb(100, 100, 100);
-  --detail-color: rgb(153, 203, 153);
-  --tag-bgd-color: var(--light-grey-color);
-  --delete-color: var(--dark-grey-color);
-  --delete-note-color: var(--med-grey-color);
-  --filter-hover-font-color: rgb(224, 162, 47);
+  --tag-bgd-color: var(--light-grey);
+  --delete-note-color: var(--med-grey);
+  --filter-hover-font-color: var(--yellow);
+}
+
+#addEditForm {
+  margin: 0 auto;
 }
 
 .titleDiv {
   margin: 0;
 }
 
-.title {
-  border-bottom: 1px solid var(--title-font-color);
-  padding-bottom: 1%;
-}
 /* function header */
 
-.funcHeaderDiv {
-  box-shadow: var(--box-shadow);
-  margin: 4% 0;
-  display: grid;
-  border-radius: 10px;
-  grid-template-columns: 20% 20% auto;
-  padding: 1%;
+.funcHeader {
+  grid-template-columns: 11% 11% 11% auto;
+  grid-template-areas: "total sort filter btns";
+}
+
+.totalDiv {
+  grid-area: total;
+}
+
+.sortDiv {
+  grid-area: sort;
+}
+
+.filterDiv {
+  grid-area: filter;
+}
+
+.total {
+  font-size: 1.2rem;
+  line-height: 2.2;
+}
+
+.totalSpan {
+  margin-left: 4%;
 }
 
 .fa-arrow-down-a-z, .fa-filter {
-  margin-right: 3%;
-}
-
-.sortDiv, .filterDiv {
-  position: relative;
+  margin-right: 8%;
 }
 
 .sortDiv:hover, .filterDiv:hover {
@@ -39,22 +49,32 @@
 }
 
 .sortDiv p, .filterDiv p {
-  display: flex;
-  justify-items: center;
   font-size: 1.2rem;
+  line-height: 2.2;
 }
 
 .fa-sort-down {
-  margin-left: 2%;
+  font-size: 1.6rem;
+  color: var(--font-grey-color);
+  margin-left: 7%;
+}
+
+.sortFilterDivContainer {
+  position: relative;
+}
+
+.sortByUl {
+  padding: 2%;
+}
+
+.filterUlDiv {
+  padding: 4% 6%;
 }
 
 .sortByUl, .filterUlDiv {
-  padding: 5%;
-  border-radius: 5px;
-  margin-top: 26px;
   position: absolute;
   display: none;
-  background-color: var(--white-color);
+  background-color: var(--white);
   box-shadow: var(--box-shadow);
   z-index: 4;
 }
@@ -66,10 +86,11 @@
 .ulTitle {
   margin-bottom: 6%;
   font-weight: 400;
+  border-bottom: 1px solid var(--font-grey-color);
+  padding-bottom: 5%;
 }
 
 .filterByUl {
-  width: 500px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 5%;
@@ -90,52 +111,11 @@
 }
 
 .btnDiv {
+  grid-area: btns;
   display: grid;
-  grid-template-columns: auto 25% 25%;
+  grid-template-columns: 1fr 1fr;
   grid-gap: 2%;
   justify-content: end;
-}
-
-/* total */
-
-.totalDiv {
-  display: grid;
-  grid-template-columns: 20% auto;
-  margin: 4% 0;
-}
-
-.total {
-  font-size: 1.2rem;
-  margin-right: 2%;
-  display: flex;
-  align-items: center;
-}
-
-/* search input box */
-
-.searchDiv {
-  width: 80%;
-  position: relative;
-}
-
-#searchInput {
-  padding-left: 40px;
-}
-
-.placeHolders {
-  top: 9px;
-  left: 10px;
-  position: absolute;
-  font-size: 1.1rem;
-  color: var(--font-grey-color);
-}
-
-.serachIcon {
-  margin-right: 1%;
-}
-
-.search {
-  width: 100%;
 }
 
 /* customer list */
@@ -151,7 +131,8 @@
   grid-gap: 2%;
   font-size: 1.2rem;
   border-bottom: 1px solid var(--font-grey-color);
-  padding: 2% 1%;
+  padding: 2% 0;
+  font-weight: 200;
 }
 
 .name {
@@ -236,18 +217,6 @@
   background-color: transparent;
 }
 
-.detail {
-  color: var(--detail-color);
-}
-
-.edit {
-  color: var(--edit-color);
-}
-
-.delete {
-  color: var(--delete-color);
-}
-
 .deleteNotes {
   font-weight: 100;
   font-size: 0.9rem;
@@ -274,22 +243,25 @@
     display: none;
   }
 
-  .tagContainer, .address1 {
+  .name {
+    margin-bottom: 5%;
+  }
+
+  .address1 {
     display: none;
   }
 
   .customerLi {
-    grid-template-columns: 40% 40% auto;
-    grid-template-areas: 
-    "name email btns"
-    "phone email btns";
+    grid-template-columns: 20% auto 20% 15%;
+    grid-template-areas:
+    "name email tag btns"
+    "phone email tag btns";
     font-size: 1.2rem;
     padding: 2% 1%;
-    margin-bottom: 3%;
   }
 
   .customerLi span {
-    margin-bottom: 1%;
+    margin-bottom: 7%;
   }
 
   .btns {
@@ -304,5 +276,37 @@
   }
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 900px) {
+  .funcHeader {
+    grid-template-columns: 30% auto 10% 10%;
+    grid-template-areas: "total btns sort filter";
+    margin: 9% 0;
+  }
+
+  .sortText, .filterText, .fa-sort-down {
+    display: none;
+  }
+
+  .tagContainer {
+    display: none;
+  }
+  .customerLi {
+    grid-template-columns: 30% 30% auto;
+    grid-template-areas:
+    "name phone btns"
+    "email email email";
+  }
+
+  .btnDiv {
+    display: block;
+  }
+
+  .addCustomerBtn {
+    line-height: 2.2;
+    padding: 2% 5%;
+  }
+
+  #exportCustomerBtn {
+    display: none;
+  }
 }

@@ -1,0 +1,53 @@
+.funcHeader {
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 3%;
+}
+
+.addIcon {
+  padding-left: 2%;
+}
+
+.yourInfoBox {
+  margin-bottom: 4%;
+  padding: 2%;
+}
+
+.containerTitle {
+  font-size: 1.2rem;
+  font-weight: 200;
+  border-bottom: 1px solid var(--font-darker-color);
+  padding-bottom: 1%;
+  margin-bottom: 3%;
+}
+
+.configDiv {
+  padding: 3%;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 5%;
+}
+
+.serviceUl, .tagUl {
+  margin-top: 2%;
+}
+
+.containerUl li {
+  display: grid;
+  grid-template-columns: 60% auto;
+  font-size: 1.1rem;
+  margin-bottom: 2%;
+}
+
+.btns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+@media only screen and (max-width: 900px) {
+  .gridContainer {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,12 +1,67 @@
 <%- include('components/head')%>
-<%- include('components/nav')%>
+  <%- include('components/nav')%>
 
-<div class="wrapper">
-  <div class="titleDiv">
-    <h1 class="title">CONFIGURATION</h1>
-    <hr/>
-  </div>
+    <div data-id="<%= companyId %>" id="container" class="wrapper">
+      <div id="msgDiv">
+        <!-- message will be here from customer-add.js -->
+      </div>
+      <div class="confirmDiv">
+        <!-- confirmation box will insert from javascripts/ConfirmationBox.js -->
+      </div>
+      <div id="addEditForm">
+        <!-- add form will be here from javascripts/CustomerForm.js -->
+      </div>
+      <div class="pageContainer">
+        <div class="titleDiv">
+          <h1 class="title">CONFIGURATION</h1>
+        </div>
+        <div class="funcHeader">
+          <button id="addServiceBtn" class="funcBtn">
+            Add service<i id="addServiceBtnIcon" class="fa-sharp fa-solid fa-plus addIcon"></i>
+          </button>
+          <button id="addTagBtn" class="funcBtn">
+            Add Tag<i id="addTagBtnIcon" class="fa-sharp fa-solid fa-plus addIcon"></i>
+          </button>
+          <button id="addProductBtn" class="funcBtn">
+            Add Product<i id="addProductBtnIcon" class="fa-sharp fa-solid fa-plus addIcon"></i>
+          </button>
+        </div>
+        <div class="yourInfoBox box">
+          <h2 class="containerTitle">Your Business</h2>
+          <div class="businessInfoDiv">
+            <!-- insert data from javascript/config -->
+          </div>
+          <span class="btns">
+            <button class="edit btn detailEditBtn">
+              <i class="fa-solid fa-pen-to-square editIcon"></i>
+            </button>
+            <button class="delete btn detailEditBtn">
+              <i class="fa-solid fa-trash deleteIcon"></i>
+            </button>
+          </span>
+        </div>
+        <div class="gridContainer">
+          <div class="configDiv box">
+            <h2 class="containerTitle">Services</h2>
+            <ul class="serviceUl containerUl">
+              <!-- services will be here from javascript/config -->
+            </ul>
+          </div>
+          <div class="configDiv box">
+            <h2 class="containerTitle">Tags</h2>
+            <ul class="tagUl containerUl">
+              <!-- tags will be here from javascript/config -->
+            </ul>
+          </div>
+          <div class="configDiv box">
+            <h2 class="containerTitle">Products</h2>
+            <ul class="productUl containerUl">
+              <!-- products will be here from javascript/config -->
+            </ul>
+          </div>
+        </div>
+      </div>
 
-</div>
+    </div>
 
-<%- include('components/footer') %>
+    <%- include('components/footer') %>

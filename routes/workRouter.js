@@ -3,24 +3,25 @@ const router = express.Router();
 
 const testCompanyId = '63584c7bfbfbb7079e0a68dd';
 
-const mainRouter = 'index';
-const folderName = 'dashboard';
+const folderName = 'work';
 const styles = [
-  `${folderName}/index`,
+  `${folderName}/workMain`,
 ];
+
 const scripts = [
-  `${folderName}/index`,
+  `${folderName}/workMain`
 ];
+
+const mainRouter = 'work';
 
 router.get('/', (req, res, next) => {
   // TODO change to req.user later
-  //const { firstName, email, permission, companyId } = req.user;
+  // const { companyId } = req?.user;
   res.render(mainRouter, {
     styles,
     scripts,
     companyId: testCompanyId
   });
 });
-
 
 module.exports = router;

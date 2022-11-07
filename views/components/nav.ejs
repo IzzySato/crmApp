@@ -1,19 +1,39 @@
 <div class="navWrapper">
-  <nav>
-    <div id="leftNav" class="leftNav">
-      <div id="logoDiv" class="logoDiv">
-        <img id="logo" class="logo" src="/images/logo.svg" alt="logo">
+  <nav class="topNav">
+    <div class="topNavHeader">
+      <div id="hamburgerMenu">
+        <div class="menuLine"></div>
+        <div class="menuLine"></div>
+        <div class="menuLine"></div>
       </div>
-      <ul id="leftNavUl" class="leftNavUl">
-        <!-- data will here from nav.js -->
-      </ul>
+      <div id="logoDiv" class="logoDiv topIconDiv">
+        <img id="logo" class="logo" src="/images/logo.png" alt="logo">
+      </div>
+      <div class="searchDiv">
+        <input type="text"
+              id="searchInput"
+              class="search"
+              aria-describedby="searchInput-hint"
+              placeholder="Search"/>
+        <span id="searchInput-hint" class="placeHolders">
+          <i class="serachIcon fa-solid fa-magnifying-glass"></i>
+        </span>
+      </div>
+      <div class="userIconDiv topIconDiv">
+        <a class="userIcon" href="/user">I</a>
+      </div>
+      <div class="bellIconDiv topIconDiv">
+        <i class="fa-regular fa-bell"></i>
+      </div>
+      <div class="configIconDiv topIconDiv">
+        <a class="config" href="/config">
+          <i class="fa-solid fa-gear"></i>
+        </a>
+      </div>
     </div>
   </nav>
-  <nav class="rightNav">
-    <div class="rightIconDiv">
-      <span id="rightNavIcon" class="rightIcon">&#187;</span>
-    </div>
-    <ul id="rightNavUl" class="rightNavUl">
+  <nav>
+    <ul id="leftNavUl" class="leftNavUl">
       <!-- data will here from nav.js -->
     </ul>
   </nav>

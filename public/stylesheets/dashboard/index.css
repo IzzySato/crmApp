@@ -1,125 +1,66 @@
-.welcome {
-  text-transform: uppercase;
-  font-size: 1.2rem;
-  margin-bottom: 2%;
+#container {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .dataDiv {
   display: grid;
-  gap: 2%;
-  grid-template-columns: 1fr 1fr;
+  grid-gap: 2%;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 .box {
-  color: var(--font-lighter-color);
   text-align: center;
   padding: 6% 0;
   margin-bottom: 2%;
 }
 
 .boxTitle {
-  font-size: 1.8rem;
+  color: var(--font-darker-color);
+  font-size: 1.1rem;
   text-transform: uppercase;
+  font-weight: 200;
   margin-bottom: 5%;
 }
 
 .num {
-  font-size: 2.7rem;
+  font-size: 2rem;
+  font-weight: 300;
 }
 
-.box1 {
-  background-color: var(--box1-color);
-}
-
-.box2 {
-  color: var(--font-darker-color);
-  box-shadow: var(--shadow);
-}
-
-.links {
-  text-transform: uppercase;
-  color: var(--font-lighter-color);
-  padding: 2%;
-}
-
-.dashboardUl {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-areas: 
-  "cus  sale schedule"
-  "user config  logout";
-  gap: 5%;
+.chartContainer {
   margin-top: 6%;
+  display: grid;
+  grid-template-columns: auto 30%;
+  grid-gap: 5%;
 }
 
-.dashLi {
-  background-color: var(--box3-color);
-  text-align: center;
-  font-size: 1.3rem;
-  border-radius: 10px;
-  padding: 3%;
+.chatDiv {
+  box-shadow: var(--box-shadow);
+  padding: 5%;
+  border-radius: 5px;
 }
 
-.dashLi:hover {
-  background-color: var(--box3-color-darker);
+.subTitle {
+  font-weight: 200;
+  font-size: 1.1rem;
 }
 
-.navIcons {
-  margin-bottom: 5%;
-}
+@media only screen and (max-width: 900px) {
 
-.dashboard, .company {
-  display: none;
-}
-
-.customer {
-  grid-area: cus;
-}
-
-.sale {
-  grid-area: sale;
-}
-
-.schedule {
-  grid-area: schedule;
-}
-
-.users {
-  grid-area: user;
-}
-
-.configuration {
-  grid-area: config;
-}
-
-.logout {
-  grid-area: logout;
-}
-
-@media only screen and (max-width: 950px) {
   .dataDiv {
-    display: none;
+    grid-template-columns: 1fr 1fr;
   }
 
-  .dashboardUl {
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas: 
-    "cus  sale"
-    "schedule user"
-    "config  logout";
+  .chatDiv {
+    width: 100%;
   }
 }
 
-@media only screen and (max-width: 650px) {
-  .dashboardUl {
-    grid-template-columns: 1fr;
-    grid-template-areas: 
-    "cus"
-    "sale"
-    "schedule"
-    "user"
-    "config"
-    "logout";
-  }
+@media only screen and (max-width: 500px) {
 
+  .dataDiv {
+    grid-template-columns: 1fr;
+    margin-bottom: 26%;
+  }
 }
