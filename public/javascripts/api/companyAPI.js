@@ -2,6 +2,7 @@ import {
   fetchJSON,
   addFetch,
   editFetch,
+  editField,
 } from './fetch.js';
 
 const router = 'company';
@@ -20,21 +21,18 @@ const editCompany = async (newCompany) =>
 const getCompanyById = async (companyId) => 
   await fetchJSON(`/${router}/getCompanyById?companyId=${companyId}`);
 
-const addAvaiableTag = async ({company, newTag}) => {
-  company.avaiableTags = [...company.avaiableTags, newTag];
-  await editCompany(company);
+const addAvaiableTag = async ({companyId, newTag}) =>
+  await editField(`/${router}/tag-add?companyId=${companyId}&tag=${newTag}`);
+
+const updateAvaiableTag = async ({companyId, avaiableTags, oldTag, newTag}) => {
+  const data = {companyId};
+  const tagArray = avaiableTags.filter((tag) => tag !== oldTag);
+  data.tags = [...tagArray, newTag];
+  await editFetch(data, `/${router}/tag-edit`);
 };
 
-const updateAvaiableTag = async ({company, oldTag, newTag}) => {
-  company.avaiableTags = company.avaiableTags.filter((tag) => tag !== oldTag);
-  company.avaiableTags = [...company.avaiableTags, newTag];
-  await editCompany(company);
-};
-
-const removeAvaiableTag = async ({company, removeTag}) => {
-  company.avaiableTags = company.avaiableTags.filter((tag) => tag !== removeTag);
-  await editCompany(company);
-};
+const removeAvaiableTag = async ({companyId, removeTag}) =>
+  await editField(`/${router}/tag-remove?companyId=${companyId}&tag=${removeTag}`);
 
 export {
   getCompanies,

@@ -29,6 +29,11 @@
   margin-bottom: 5%;
 }
 
+.labelInput {
+  display: grid;
+  grid-template-columns: 40% auto;
+}
+
 .inputDiv {
   margin: 2% 0;
 }

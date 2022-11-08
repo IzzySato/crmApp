@@ -126,6 +126,9 @@ export default class CustomerForm extends Form {
     }
   }
 
-  showDetailForm() {
+  showDetail() {
+    this.addEditDiv.innerHTML = this.buildForm();
+    this.isOpen = true;
+    super.cancelEvent();
   }
 }

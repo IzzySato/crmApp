@@ -18,7 +18,7 @@ const addService = async (service) =>
 const editService = async (service) => 
   await editFetch(service, `${router}/edit`);
 
-const deleteService = async ({id}) => 
+const deleteService = async (id) => 
   await deleteFetch(`${router}/delete?serviceId=${id}`);
 
 export {

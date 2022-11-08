@@ -3,29 +3,24 @@ import { lowerCaseCustomerData } from '../../../util/format-data.js';
 import {
   search, sort,
 } from '../../../util/page-func-util.js';
-
 import {
   displayPagination
 } from '../../../util/pagination.js';
-
 import {
   addCustomer,
+  deleteCustomer,
   editCustomer,
   getCustomerById,
   getCustomers,
 } from '../../api/customerAPI.js';
-
 import {
   getCompanyById
 } from '../../api/companyAPI.js';
-
-import CustomerDetail from '../../CustomerDetail.js';
-
 import {
   deleteCustomers,
   sampleDataInit
 } from '../../developmentOnly/customerDevelopment.js';
-import CustomerForm from '../../Forms/customerForm.js';
+import CustomerForm from '../../forms/childForms/CustomerForm.js';
 
 const pageName = 'customer';
 let currentPage = 1;
@@ -175,6 +170,9 @@ const clickEvent = async (
         avaiableTags,
       },
       submitFunc: editCustomer,
+      onBeforeSubmitFunc: (newData) => {
+        newData.id = target.dataset.id;
+      },
       successMsg: (customer) => `update the customer ${customer.firstName} ${customer.lastName}`,
     };
     const CustomerEditForm = new CustomerForm(customerInfo);
@@ -182,16 +180,31 @@ const clickEvent = async (
   }
 
   if (target.matches('.detail, .detailIcon')) {
-    const detailDiv = document.querySelector('#detailDiv');
     const { data } = await getCustomerById(target.dataset.id);
-    const customerDetail = new CustomerDetail(detailDiv, data);
-    customerDetail.show();
+    const customerInfo = {
+      crud: 'detail',
+      data: {
+        current: data,
+        avaiableTags,
+      },
+    };
+    const customerDetail = new CustomerForm(customerInfo);
+    customerDetail.showDetail();
   }
 
-  // if (target.matches('.delete, .deleteIcon')) {
-  //   const customerDelete = new CustomerDelete('Delete the customer? <span class="deleteNotes">*The data will be still there but you cannot see on the table. To see deleted customer go to configuration/customers</span>');
-  //   customerDelete.show();
-  // }
+  if (target.matches('.delete, .deleteIcon')) {
+    const customerInfo = {
+      crud: 'delete',
+      data: {
+        _id: target.dataset.id,
+        name: target.dataset.name
+      },
+      submitFunc: deleteCustomer,
+      successMsg: () => `deleted the customer ${target.dataset.name}`,
+    };
+    const CustomerDeleteForm = new CustomerForm(customerInfo);
+    CustomerDeleteForm.delete();
+  }
 
   if (target.matches('.moreDots, .moreDotsIcon')) {
     const customerId = target.dataset.id;

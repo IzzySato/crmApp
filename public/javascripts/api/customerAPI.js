@@ -16,16 +16,15 @@ const getCustomersLength = async (companyId) => {
 const getCustomerById = async (customerId) =>
   await fetchJSON(`${router}/getCustomer?id=${customerId}`);
 
-
 const addCustomer = async (customer) => 
  await addFetch(customer, `${router}/add`);
 
 const editCustomer = async (customer) =>
   await editFetch(customer, `${router}/edit`);
 
-const deleteCustomer = async (customerId) => {
-  //edit the customer lock to true
-}
+// NOT delete, just set to isLocked to true and hide from customer list
+const deleteCustomer = async (_id) =>
+  await editFetch({_id}, `${router}/lock`);
 
 export {
   getCustomers,

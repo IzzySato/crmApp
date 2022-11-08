@@ -38,8 +38,8 @@ const customerHTML = ({
     <button data-id="${_id}" class="edit btn detailEditBtn">
       <i data-id="${_id}" class="fa-solid fa-pen-to-square editIcon"></i>
     </button>
-    <button data-id="${_id}" class="delete btn detailEditBtn">
-      <i data-id="${_id}" class="fa-solid fa-trash deleteIcon"></i>
+    <button data-name="${firstName} ${lastName}" data-id="${_id}" class="delete btn detailEditBtn">
+      <i data-name="${firstName} ${lastName}" data-id="${_id}" class="fa-solid fa-trash deleteIcon"></i>
     </button>
   </span>
 </li>`;

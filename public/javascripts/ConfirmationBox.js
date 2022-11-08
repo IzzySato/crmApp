@@ -5,7 +5,7 @@ export default class ConfirmationBox {
     this.confirm = false;
   }
 
-  getHTML() {
+  #getHTML() {
     return `
     <div class="boxWrapper">
       <div class="confirmBox">
@@ -17,7 +17,7 @@ export default class ConfirmationBox {
   }
 
   show() {
-    this.confirmDiv.innerHTML = this.getHTML();
+    this.confirmDiv.innerHTML = this.#getHTML();
     const confirmBtn = this.confirmDiv.querySelector('.submit');
     const cancelBtn = this.confirmDiv.querySelector('.cancel');
     cancelBtn.addEventListener('click', () => {

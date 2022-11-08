@@ -1,13 +1,14 @@
 import { addAvaiableTag, getCompanyById, removeAvaiableTag, updateAvaiableTag } from '../../api/companyAPI.js';
 import { getAllProducts } from '../../api/productAPI.js';
 import { addService, deleteService, editService, getServicesByCompanyId } from '../../api/serviceAPI.js';
-import Form from '../../Form.js';
+import Form from '../../forms/Form.js';
 import { businessInfo, productList, serviceList, tagList } from '../../htmlTemplate/configHtml.js';
 
 const serviceUl = document.querySelector('.serviceUl');
 const tagUl = document.querySelector('.tagUl');
 const businessInfoDiv = document.querySelector('.businessInfoDiv');
 const companyId = document.querySelector('#container').dataset.id;
+let companyTags = [];
 
 const configInit = async (companyId) => {
   const productUl = document.querySelector('.productUl');
@@ -18,6 +19,7 @@ const configInit = async (companyId) => {
     address,
     phone,
     avaiableTags } = await getCompanyById(companyId);
+  companyTags = avaiableTags;
   serviceUl.innerHTML = data.map((service) => serviceList(service)).join('');
   tagUl.innerHTML = avaiableTags.map((tag) => tagList(tag)).join('');
   businessInfoDiv.innerHTML = businessInfo(
@@ -34,11 +36,13 @@ const clickEvent = async (
     const service = {
       router: 'config',
       crud: 'add',
+      data: {
+        placeholder: 'Renovation',
+        validator: (val) => val.length > 0,
+      },
       itemName: 'service',
-      placeholder: 'Renovation',
       submitFunc: addService,
       onBeforeSubmitFunc: (newData) => newData.companyId = companyId,
-      validator: (val) => val.length > 0,
       successMsg: ({name}) => `added service ${name}`
     };
     const ServiceForm = new Form(service);
@@ -49,7 +53,8 @@ const clickEvent = async (
     const service = {
       data: {
         _id: target.dataset.id,
-        name: target.dataset.name
+        name: target.dataset.name,
+        validator: (val) => val.length > 0,
       },
       router: 'config',
       crud: 'edit',
@@ -59,7 +64,6 @@ const clickEvent = async (
         newData.companyId = companyId,
         newData.id = target.dataset.id
       },
-      validator: (val) => val.length > 0,
       successMsg: ({name}) => `eddited service ${name}`
     };
     const ServiceForm = new Form(service);
@@ -70,7 +74,6 @@ const clickEvent = async (
     const service = { 
       data: {
         _id: target.dataset.id,
-        name: target.dataset.name
       },
       itemName: 'service',
       router: 'config',
@@ -86,18 +89,19 @@ const clickEvent = async (
   }
 
   if(target.matches('#addTagBtn, #addTagBtnIcon')) {
-    const company = await getCompanyById(companyId);
     const tagInfo = {
       router: 'config',
       crud: 'add',
       itemName: 'tag',
-      placeholder: 'local',
+      data: {
+        placeholder: 'local',
+        validator: (val) => val.length > 0,
+      },
       submitFunc: addAvaiableTag,
       onBeforeSubmitFunc: (newData) => {
-        newData.company = company,
+        newData.companyId = companyId,
         newData.newTag = newData.name
       },
-      validator: (val) => val.length > 0,
       successMsg: ({name}) => `added tag ${name}`
     };
     const TagForm = new Form(tagInfo);
@@ -105,22 +109,22 @@ const clickEvent = async (
   }
 
   if(target.matches('.tagEdit, .tagEditIcon')) {
-    const company = await getCompanyById(companyId);
     const tagInfo = {
       router: 'config',
       crud: 'edit',
       data: {
         _id: target.dataset.id,
-        name: target.dataset.name
+        name: target.dataset.name,
+        validator: (val) => val.length > 0,
       },
       itemName: 'tag',
       submitFunc: updateAvaiableTag,
       onBeforeSubmitFunc: (newData) => {
-        newData.company = company;
+        newData.companyId = companyId;
+        newData.avaiableTags = companyTags;
         newData.newTag = newData.name;
         newData.oldTag = target.dataset.name;
       },
-      validator: (val) => val.length > 0,
       successMsg: ({name}) => `updated tag ${name}`
     };
     const TagForm = new Form(tagInfo);
@@ -128,7 +132,6 @@ const clickEvent = async (
   }
 
   if(target.matches('.tagDelete, .tagDeleteIcon')) {
-    const company = await getCompanyById(companyId);
     const tagInfo = { 
       itemName: 'tag',
       data: {
@@ -139,18 +142,13 @@ const clickEvent = async (
       crud: 'delete',
       submitFunc: removeAvaiableTag,
       onBeforeSubmitFunc: (newData) => {
-        newData.company = company;
+        newData.companyId = companyId;
         newData.removeTag = target.dataset.name;
       },
       successMsg: () => `deleted tag ${target.dataset.name}`
     };
     const TagForm = new Form(tagInfo);
     TagForm.delete();
-  }
-
-  if(target.matches('#addProductBtn, #addProductBtnIcon')) {
-    const productForm = new Form('product-add', {});
-    productForm.show();
   }
 };
 
