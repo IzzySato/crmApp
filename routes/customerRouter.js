@@ -14,9 +14,7 @@ const {
 
 const folderName = 'customer';
 const styles = [
-  `${folderName}/customerMain`,
-  `${folderName}/customerAddEdit`,
-  `${folderName}/customerDetail`,
+  `${folderName}/customerMain`
 ];
 
 const scripts = [

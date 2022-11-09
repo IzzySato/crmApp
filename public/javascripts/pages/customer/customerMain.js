@@ -199,6 +199,9 @@ const clickEvent = async (
         _id: target.dataset.id,
         name: target.dataset.name
       },
+      onBeforeSubmitFunc: (newData) => {
+        newData._id = target.dataset.id;
+      },
       submitFunc: deleteCustomer,
       successMsg: () => `deleted the customer ${target.dataset.name}`,
     };

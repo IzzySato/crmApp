@@ -1,6 +1,7 @@
 const express = require('express');
 const {
   getProductsByCompany,
+  getProductByProductId,
   addProduct,
   editProduct,
   deleteProduct
@@ -11,6 +12,12 @@ const router = express.Router();
 router.get('/getAllProducts', async (req, res, next) => {
   const { companyId } = req.query;
   const data = await getProductsByCompany(companyId);
+  res.json({ data });
+});
+
+router.get('/getProduct', async (req, res, next) => {
+  const { productId } = req.query;
+  const data = await getProductByProductId(productId);
   res.json({ data });
 });
 

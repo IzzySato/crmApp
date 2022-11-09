@@ -133,7 +133,6 @@ input:focus, textarea:focus {
   padding: 3% 0;
 }
 
-
 .loginRegiBtn {
   font-size: 1.5rem;
   padding: 2% 7%;
@@ -202,6 +201,22 @@ input:focus, textarea:focus {
 .box {
   box-shadow: var(--box-shadow);
   border-radius: 5px;
+}
+
+.detailEditDeleteBtnContainer {
+  display: grid;
+}
+
+.detailEditDeleteBtnContainer button i {
+  font-size: 1.4rem;
+}
+
+.twoBtns {
+  grid-template-columns: 1fr 1fr;
+}
+
+.threeBtns {
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .detail {

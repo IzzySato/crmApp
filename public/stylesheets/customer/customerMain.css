@@ -209,14 +209,6 @@
   margin-bottom: 3%;
 }
 
-.btn {
-  font-size: 1.5rem;
-}
-
-.detailEditBtn {
-  background-color: transparent;
-}
-
 .deleteNotes {
   font-weight: 100;
   font-size: 0.9rem;
@@ -224,11 +216,6 @@
   margin-top: 3%;
   line-height: 1.6;
   color: var(--delete-note-color);
-}
-
-.editAddBtns {
-  font-size: 1.3rem;
-  padding: 3% 0;
 }
 
 .devBtn {

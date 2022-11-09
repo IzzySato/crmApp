@@ -23,7 +23,7 @@ const editCustomer = async (customer) =>
   await editFetch(customer, `${router}/edit`);
 
 // NOT delete, just set to isLocked to true and hide from customer list
-const deleteCustomer = async (_id) =>
+const deleteCustomer = async ({_id}) =>
   await editFetch({_id}, `${router}/lock`);
 
 export {

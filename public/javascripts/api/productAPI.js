@@ -5,17 +5,23 @@ const router = '/product';
 const getAllProducts = async (companyId) =>
   await fetchJSON(`${router}/getAllProducts?companyId=${companyId}`);
 
-const addProduct = async (companyId, product) =>
-  await addFetch(product, `${router}/add?companyId=${companyId}`);
+const getProductByProductId = async (productId) =>
+  await fetchJSON(`${router}/getProduct?productId=${productId}`);
 
-const editProduct = async (productId, product) =>
-  await editFetch(product, `${router}/edit?productId=${productId}`);
+const addProduct = async (product) => {
+  console.log(product);
+  await addFetch(product, `${router}/add`);
+}
 
-const deleteProduct = async (productId) =>
-  await deleteFetch(`${router}/delete?productId=${productId}`);
+const editProduct = async (product) =>
+  await editFetch(product, `${router}/edit`);
+
+const deleteProduct = async ({id}) =>
+  await deleteFetch(`${router}/delete?productId=${id}`);
 
 export {
   getAllProducts,
+  getProductByProductId,
   addProduct,
   editProduct,
   deleteProduct

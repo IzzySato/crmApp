@@ -22,7 +22,6 @@ export default class CustomerForm extends Form {
   getData() {
     return {
       formData: {
-        customerId: this.data?._id || '',
         formClass: 'customerForm'
       },
       fields: [
@@ -124,11 +123,5 @@ export default class CustomerForm extends Form {
         },
       ]
     }
-  }
-
-  showDetail() {
-    this.addEditDiv.innerHTML = this.buildForm();
-    this.isOpen = true;
-    super.cancelEvent();
   }
 }

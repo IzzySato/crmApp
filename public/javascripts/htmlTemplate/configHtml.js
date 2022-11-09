@@ -1,4 +1,4 @@
-import { editDelete } from "./editDelete.js";
+import { detailEditDelete, editDelete } from "./common/detailEditDetail.js";
 
 const serviceList = (service) =>
   `<li>
@@ -14,12 +14,8 @@ const tagList = (tag) =>
 
 const productList = (product) =>
   `<li>
-    <span>
-      <h2>${product.name}</h2>
-      <p>${product.unitPrice}</p>
-      <p>${product.tax}</p>
-    </span>
-    ${ editDelete(product, 'product') }
+    <span class="productSpan">${product.name}</span>
+    ${ detailEditDelete(product, 'product') }
   </li>`;
 
 const businessInfo = (businessName, address, phone) =>

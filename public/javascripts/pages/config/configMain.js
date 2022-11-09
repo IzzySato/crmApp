@@ -1,6 +1,7 @@
 import { addAvaiableTag, getCompanyById, removeAvaiableTag, updateAvaiableTag } from '../../api/companyAPI.js';
-import { getAllProducts } from '../../api/productAPI.js';
+import { addProduct, deleteProduct, editProduct, getAllProducts, getProductByProductId } from '../../api/productAPI.js';
 import { addService, deleteService, editService, getServicesByCompanyId } from '../../api/serviceAPI.js';
+import ProductForm from '../../forms/childForms/ProductForm.js';
 import Form from '../../forms/Form.js';
 import { businessInfo, productList, serviceList, tagList } from '../../htmlTemplate/configHtml.js';
 
@@ -26,7 +27,7 @@ const configInit = async (companyId) => {
     businessName,
     address,
     phone);
-  productUl.innerHTML = (products.length > 0) ? products.map((product) => productList(product)).join('') : '';
+  productUl.innerHTML = (products.data.length > 0) ? products.data.map((product) => productList(product)).join('') : '';
 };
 
 const clickEvent = async (
@@ -149,6 +150,62 @@ const clickEvent = async (
     };
     const TagForm = new Form(tagInfo);
     TagForm.delete();
+  }
+
+  if(target.matches('#addProductBtnIcon, #addProductBtn')) {
+    const Product = new ProductForm({
+      crud: 'add',
+      submitFunc: addProduct,
+      onBeforeSubmitFunc: (newData) => {
+        newData.companyId = companyId;
+      },
+      successMsg: () => `added product ${target.dataset.name}`
+    });
+    Product.showForm();
+  }
+
+  if(target.matches('.productDetail, .productDetailIcon')) {
+    const { data } = await getProductByProductId(target.dataset.id);
+    const Product = new ProductForm({
+      crud: 'detail',
+      data: {
+        current: data
+      }
+    });
+    Product.showDetail();
+  }
+
+  if(target.matches('.productEdit, .productEditIcon')) {
+    const { data } = await getProductByProductId(target.dataset.id);
+    const Product = new ProductForm({
+      crud: 'edit',
+      submitFunc: editProduct,
+      data: {
+        current: data
+      },
+      onBeforeSubmitFunc: (newData) => {
+        newData.companyId = companyId;
+        newData.id = target.dataset.id;
+      },
+      successMsg: () => `updated product ${target.dataset.name}`
+    });
+    Product.showForm();
+  }
+
+  if(target.matches('.productDelete, .productDeleteIcon')) {
+    const Product = new ProductForm({
+      crud: 'delete',
+      submitFunc: deleteProduct,
+      data: {
+        _id: target.dataset.id,
+        name: target.dataset.name
+      },
+      onBeforeSubmitFunc: (newData) => {
+        newData.id = target.dataset.id;
+      },
+      successMsg: () => `deleted product ${target.dataset.name}`
+    });
+    Product.delete();
   }
 };
 

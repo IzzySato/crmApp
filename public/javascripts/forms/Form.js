@@ -168,6 +168,7 @@ export default class Form extends ConfirmationBox {
   async submit() {
     const newData = this.#getNewInputValues();
     this?.onBeforeSubmitFunc(newData);
+    console.log(newData);
     this.msg = this.successMsg(newData);
     await this.submitFunc(newData);
     this.#openMsg();
@@ -189,5 +190,11 @@ export default class Form extends ConfirmationBox {
     this.msg = this.successMsg();
     this.submit = this.#deleteFunc;
     super.show();
+  }
+
+  showDetail() {
+    this.addEditDiv.innerHTML = this.#buildForm();
+    this.isOpen = true;
+    this.#cancelEvent();
   }
 }

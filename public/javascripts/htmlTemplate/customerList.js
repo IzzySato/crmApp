@@ -1,3 +1,5 @@
+import { detailEditDelete } from "./common/detailEditDetail.js";
+
 const tagClassList = (index) =>
   (index < 3) ? 'lessThree tagSpan' : 'moreThree tagSpan';
   
@@ -31,17 +33,7 @@ const customerHTML = ({
     </span>
     ${(tags.length > 3) ? `<span data-id="${_id}" class="moreDots" id="moreDots${_id}"><i data-id="${_id}" class="fa-sharp fa-solid fa-ellipsis moreDotsIcon"></i></span>` : ''}
   </div>
-  <span class="btns">
-    <button data-id="${_id}" class="detail btn detailEditBtn">
-      <i data-id="${_id}" class="fa-sharp fa-solid fa-circle-info detailIcon"></i>
-    </button>
-    <button data-id="${_id}" class="edit btn detailEditBtn">
-      <i data-id="${_id}" class="fa-solid fa-pen-to-square editIcon"></i>
-    </button>
-    <button data-name="${firstName} ${lastName}" data-id="${_id}" class="delete btn detailEditBtn">
-      <i data-name="${firstName} ${lastName}" data-id="${_id}" class="fa-solid fa-trash deleteIcon"></i>
-    </button>
-  </span>
+  ${detailEditDelete({_id, name: `${firstName} ${lastName}`})}
 </li>`;
 
 // insert the customer in pagination
