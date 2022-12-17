@@ -43,6 +43,21 @@ const editFetch = async (updateData, route) => {
   }
 };
 
+const editFetchWithImg = async (updateData, route) => {
+  try {
+    console.log(updateData);
+    const res = await fetch(route, {
+      method: 'POST',
+      body: updateData,
+    });
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
+};
+
 const editField = async (route) => {
   try {
     const res = await fetch(route, {
@@ -75,5 +90,6 @@ export {
   fetchJSON,
   editFetch,
   deleteFetch,
-  editField
+  editField,
+  editFetchWithImg
 }

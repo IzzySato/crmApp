@@ -10,6 +10,7 @@
   --med-grey: #474646;
   --dark-grey: #505050;
   --red: #ff5959;
+  --orange: #f5701d;
   --green: #477a2d;
   --dark-green: #2c4d1b;
   --yellow: #dfdf77;
@@ -60,7 +61,7 @@ li {
 button {
   border: none;
   border-radius: 10px;
-  color: var(--font-lighter-color);
+  background-color: transparent;
 }
 
 button:hover {
@@ -158,15 +159,15 @@ input:focus, textarea:focus {
 .funcBtn {
   text-transform: uppercase;
   font-size: 1rem;
-  padding: 1% 2%;
+  padding: 3% 3%;
   border-radius: 5px;
-  background-color: var(--white-color);
-  color: var(--font-grey-color);
+  background-color: var(--black);
+  color: var(--font-lighter-color);
   box-shadow: var(--box-shadow);
 }
 
 .funcBtn:hover {
-  color: var(--med-grey-color);
+  background-color: var(--med-grey);
 }
 
 .totalP {
@@ -176,26 +177,6 @@ input:focus, textarea:focus {
 
 .el-hide {
   display: block;
-}
-
-.permissionsDiv {
-  margin: 2% 0;
-}
-
-.permissionTag {
-  font-size: 0.9rem;
-  background-color: var(--permission-bgd);
-  padding: 1%;
-  display: inline-block;
-  margin-bottom: 1%;
-  border-radius: 10px;
-  color: var(--permission-color);
-}
-
-.msgDiv {
-  text-align: center;
-  background-color: var(--white);
-  color: var(--font-darker-color);
 }
 
 .box {
@@ -219,16 +200,24 @@ input:focus, textarea:focus {
   grid-template-columns: 1fr 1fr 1fr;
 }
 
-.detail {
+.fourBtns {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.detailIcon {
   color: var(--detail-color);
 }
 
-.edit {
+.editIcon {
   color: var(--edit-color);
 }
 
-.delete {
+.deleteIcon {
   color: var(--delete-color);
+}
+
+.permissionIcon {
+  color: var(--orange);
 }
 
 @media only screen and (max-width: 1100px) {

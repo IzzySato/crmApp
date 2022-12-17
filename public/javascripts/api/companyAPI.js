@@ -1,6 +1,5 @@
 import {
   fetchJSON,
-  addFetch,
   editFetch,
   editField,
 } from './fetch.js';
@@ -12,17 +11,27 @@ const getCompanies = async () => {
   return data;
 };
 
-const addCompany = async (newCompany) =>
-  await addFetch(newCompany, `/${router}/add`);
-
-const editCompany = async (newCompany) =>
-  await editFetch(newCompany, `/${router}/edit`);
+const addEditCompany = async (newCompany) => {
+  const formData = new FormData();
+  Object.entries(newCompany).forEach(([key, value]) => formData.append(key, value));
+  const options = {
+    method: 'POST',
+    body: formData,
+  };
+  await fetch(`/${router}/${(newCompany._id) ? 'edit' : 'add'}`, options);
+}
   
 const getCompanyById = async (companyId) => 
   await fetchJSON(`/${router}/getCompanyById?companyId=${companyId}`);
 
 const addAvaiableTag = async ({companyId, newTag}) =>
   await editField(`/${router}/tag-add?companyId=${companyId}&tag=${newTag}`);
+
+const addPermission = async ({companyId, permission}) =>
+  await editField(`/${router}/permission-add?companyId=${companyId}&permission=${permission}`);
+
+const removePermission = async ({companyId, permission}) =>
+  await editField(`/${router}/permission-add?companyId=${companyId}&permission=${permission}`);
 
 const updateAvaiableTag = async ({companyId, avaiableTags, oldTag, newTag}) => {
   const data = {companyId};
@@ -36,10 +45,11 @@ const removeAvaiableTag = async ({companyId, removeTag}) =>
 
 export {
   getCompanies,
-  editCompany,
+  addEditCompany,
   getCompanyById,
-  addCompany,
   addAvaiableTag,
   removeAvaiableTag,
-  updateAvaiableTag
+  updateAvaiableTag,
+  addPermission,
+  removePermission
 }

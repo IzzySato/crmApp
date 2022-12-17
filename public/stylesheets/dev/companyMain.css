@@ -14,3 +14,28 @@
 #totalCompanyNum {
   padding: 2% 0;
 }
+
+.containerTitle {
+  font-weight: 200;
+}
+
+#companyUl {
+  margin: 5% 0;
+  padding: 4%;
+}
+
+.permissionAddDiv {
+  margin-bottom: 5%;
+}
+
+#addPermissionBtn {
+  background-color: var(--dark-green);
+  color: var(--white);
+  padding: 2%;
+}
+
+.subTitle {
+  font-weight: 200;
+  border-bottom: 1px solid var(--med-grey);
+  padding-bottom: 2%;
+}

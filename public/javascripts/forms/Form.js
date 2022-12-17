@@ -63,55 +63,94 @@ export default class Form extends ConfirmationBox {
         inputs.forEach((input) => (input.checked) ? newValueArray.push(input.value) : '');
         result[field.inputId] = newValueArray;
       } else {
-        const newVal = document.querySelector(`#${field.inputId}`)?.value;
-        this.#fieldValidator(newVal, field);
-        result[field.inputId] = newVal;
+        const newVal = document.querySelector(`#${field.inputId}`);
+        if(field.type === 'file'){
+          this.#fieldValidator(newVal.files[0], field);
+          result[field.inputId] = newVal.files[0];
+        } else {
+          this.#fieldValidator(newVal.value, field);
+          result[field.inputId] = newVal.value;
+        }
       }
     });
     return result;
   }
 
-  #getInputForm(inputType, data) {
-    if (inputType === 'input') {
-      return `<div class="inputDiv labelInput">
-                  <label
-                    class="labels"
-                    for="${data.inputId}">
-                    ${data.name}
-                  </label>
-                  ${(data.notes) ? `<p>${data.notes}</p>` : ''}
-                  <input class="inputs"
-                        placeholder="${data.placeholder}"
-                        type="${data.type}"
-                        id="${data.inputId}"
-                        name="${data.inputId}"
-                        ${(data.current) ? `value = ${data.current}` : ''}
-                        ${(this.crud === 'detail')? 'readonly': ''}
-                        />
-                  <div class="warningMsgDiv ${data.inputId}msgDiv"></div>
-                </div>`;
-    }
-    if (inputType === 'select') {
-      return `<div class="${data.class}">
-                <label class="labels" for="${data.inputId}">${data.name}</label>
-                <select name="${data.inputId}" id="${data.inputId}">
-                  ${data.options.map((value) => `<option value="${value}"
-                  ${(value === data.current) ? 'selected' : ''}>${value}</option>`)}
-                </select>
-              </div>`;
-    }
-    if (inputType === 'checkbox') {
-      return `<div class="inputDiv">
-                <h3 class="inputTitle">${data.name}</h3>
-                ${(data.notes) ? `<p class="notes">${data.notes}</p>` : ''}
-                  <div class="checkBoxDiv">
-                    ${data.inputs.map((input) => `<input class="checkbox"
-                    type="Checkbox"
-                    ${(data.current) ? (data.current.includes(input)) ? 'checked' : '' : ''}
+  basicInputHTML(data){
+    return `<div class="inputDiv labelInput">
+              <label
+                class="labels"
+                for="${data.inputId}">
+                ${data.name}
+              </label>
+              ${(data.notes) ? `<p>${data.notes}</p>` : ''}
+              <input class="inputs"
+                    placeholder="${data.placeholder}"
+                    type="${data.type}"
+                    id="${data.inputId}"
                     name="${data.inputId}"
-                    value=${input} /><span class="checkboxInput">${input}</span>`).join('')}
-                  </div>
-                </div>`;
+                    value="${(data.current)? data.current : ''}"
+                    ${(this.crud === 'detail')? 'readonly': ''}
+                    />
+              <div class="warningMsgDiv ${data.inputId}msgDiv"></div>
+            </div>`;
+  }
+
+  imgInputHTML(data) {
+    return `<div>
+              <label
+                class="labels"
+                for="${data.inputId}">
+                ${data.name}
+              </label><br/>
+              <img src="data:image/String;base64,
+                  ${data.current.toString('base64')}">
+              ${(this.crud === 'edit') ? `<input class="inputs"
+                placeholder="${data.placeholder}"
+                type="${data.type}"
+                id="${data.inputId}"
+                name="${data.inputId}"
+                value="${data.current}"
+              ${(this.crud === 'detail')? 'readonly': ''}/>` : ''}   
+            </div>`
+  }
+
+  selectHTML() {
+    return `<div class="${data.class}">
+              <label class="labels" for="${data.inputId}">${data.name}</label>
+              <select name="${data.inputId}" id="${data.inputId}">
+                ${data.options.map((value) => `<option value="${value}"
+                ${(value === data.current) ? 'selected' : ''}>${value}</option>`)}
+              </select>
+            </div>`;
+  }
+
+  checkboxHTML(){
+    return `<div class="inputDiv">
+              <h3 class="inputTitle">${data.name}</h3>
+              ${(data.notes) ? `<p class="notes">${data.notes}</p>` : ''}
+                <div class="checkBoxDiv">
+                  ${data.inputs.map((input) => `<input class="checkbox"
+                  type="Checkbox"
+                  ${(data.current) ? (data.current.includes(input)) ? 'checked' : '' : ''}
+                  name="${data.inputId}"
+                  value=${input} /><span class="checkboxInput">${input}</span>`).join('')}
+                </div>
+              </div>`;
+  }
+
+  #getInputForm(data) {
+    if (data.inputType === 'input') {
+      if(data.type === 'file' && data.current) {
+        return this.imgInputHTML(data);
+      }
+      return this.basicInputHTML(data);
+    }
+    if (data.inputType === 'select') {
+      return this.selectHTML(data);
+    }
+    if (data.inputType === 'checkbox') {
+      this.checkboxHTML(data);
     }
     return '';
   }
@@ -121,13 +160,13 @@ export default class Form extends ConfirmationBox {
                 class="form ${this.getData().formData.formClass}">
               <div class="addEditForm">
                 <h1 class="formTitle">${this.itemName} ${this.crud}</h1>
-                ${this.getData().fields.map((field) => this.#getInputForm(field.inputType, field)).join('')}
-                    <div class="editAddBtnsDiv">
+                ${this.getData().fields.map((field) => this.#getInputForm(field)).join('')}
+                    <div class="${(this.crud === 'detail')? "detailBtnsDiv" : "editAddBtnsDiv"}">
                     ${(this.crud !== 'detail') ?
-                      `<button id="${this.crud}${this.itemName}Btn" class="openConfirmBtns submit editAddBtns">
+                      `<button id="${this.crud}${this.itemName}Btn" class="openConfirmBtns submit">
                           ${this.crud} ${this.itemName}
                        </button>`: ''}
-                      <button id="cancelBtn" class="cancel editAddBtns">
+                      <button id="cancelBtn" class="cancel ${(this.crud === 'detail')? 'closeBtn' : 'cancelBtn'}">
                         ${(this.crud === 'detail')? 'Close' : 'Cancel'}
                       </button>
                     </div>
@@ -140,7 +179,7 @@ export default class Form extends ConfirmationBox {
     this.addEditDiv.innerHTML = '';
   }
 
-  #cancelEvent() {
+  cancelEvent() {
     const pageContainer = document.querySelector('.pageContainer');
     const cancelBtn = this.addEditDiv.querySelector('.cancel');
     cancelBtn.addEventListener('click', () => {
@@ -168,7 +207,6 @@ export default class Form extends ConfirmationBox {
   async submit() {
     const newData = this.#getNewInputValues();
     this?.onBeforeSubmitFunc(newData);
-    console.log(newData);
     this.msg = this.successMsg(newData);
     await this.submitFunc(newData);
     this.#openMsg();
@@ -183,7 +221,7 @@ export default class Form extends ConfirmationBox {
       // open confirmation box
       super.show();
     });
-    this.#cancelEvent();
+    this.cancelEvent();
   }
 
   delete() {
@@ -195,6 +233,6 @@ export default class Form extends ConfirmationBox {
   showDetail() {
     this.addEditDiv.innerHTML = this.#buildForm();
     this.isOpen = true;
-    this.#cancelEvent();
+    this.cancelEvent();
   }
 }

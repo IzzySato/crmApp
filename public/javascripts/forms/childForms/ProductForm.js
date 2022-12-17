@@ -26,7 +26,7 @@ export default class ProductForm extends Form {
       },
       fields: [
         {
-          name: 'name',
+          name: 'Name',
           inputId: 'name',
           inputType: 'input',
           type: 'text',
@@ -36,7 +36,7 @@ export default class ProductForm extends Form {
           validatorMsg: 'product name must not be empty'
         },
         {
-          name: 'unitPrice',
+          name: 'Unit Price',
           inputId: 'unitPrice',
           inputType: 'input',
           type: 'number',
@@ -46,7 +46,7 @@ export default class ProductForm extends Form {
           validatorMsg: 'product unit price must greater than 0'
         },
         {
-          name: 'tax',
+          name: 'Tax',
           inputId: 'tax',
           inputType: 'input',
           type: 'number',

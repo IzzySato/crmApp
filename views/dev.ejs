@@ -1,27 +1,34 @@
 <%- include('components/head')%>
-<%- include('components/nav')%>
+  <%- include('components/nav')%>
 
-<div class="wrapper">
-  <div class="titleDiv">
-    <h1 class="title">DEVELOPER USE ONLY PAGE</h1>
-    <hr/>
-  </div>
-  <div class="companyBtnDiv">
-    <a href="/dev/company-add" class="addCompanyBtn addBtn">Add Company</a>
-    <a href="/dev/tag-management" class="tagBtn addBtn">Tag Management</a>
-  </div>
-  <div class="searchDiv">
-    <input id="companySearchInput" type="text" class="search" placeholder="search company"/>
-    <button id="companySearch" class="searchBtn">Search</button>
-  </div>
-  <div>
-    <p id="totalCompanyNum" class="totalP"></p>
-    <h1>All Companies</h1>
-    <hr />
-    <ul id="companyUl">
-      <!-- data will be here from company.js -->
-    </ul>
-  </div>
-</div>
+    <div class="wrapper">
+      <div id="msgDiv">
+        <!-- message will be here from customer-add.js -->
+      </div>
+      <div class="confirmDiv">
+        <!-- confirmation box will insert from javascripts/ConfirmationBox.js -->
+      </div>
+      <div id="addEditForm">
+        <!-- add form will be here from javascripts/CustomerForm.js -->
+      </div>
+      <div class="pageContainer">
+        <div class="titleDiv">
+          <h1 class="title">DEVELOPER USE ONLY PAGE</h1>
+        </div>
+        <div class="funcHeader">
+          <button id="addCompany" class="funcBtn">
+            Add New Company<i id="addCompanyIcon" class="fa-sharp fa-solid fa-plus addIcon"></i>
+          </button>
+        </div>
+        <div>
+          <p id="totalCompanyNum" class="totalP"></p>
+          <h2 class="containerTitle">All Companies</h2>
+          <ul id="companyUl" class="box">
+            <!-- data will be here from company.js -->
+          </ul>
+        </div>
+      </div>
 
-<%- include('components/footer') %>
+    </div>
+
+    <%- include('components/footer') %>

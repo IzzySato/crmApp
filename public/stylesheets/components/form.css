@@ -76,3 +76,7 @@
   grid-gap: 10%;
   margin-top: 4%;
 }
+
+.detailBtnsDiv {
+  display: block;
+}

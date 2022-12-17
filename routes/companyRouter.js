@@ -1,4 +1,9 @@
 const express = require('express');
+const multer  = require('multer');
+const storage = multer.memoryStorage();
+const upload = multer({ dest: './public/images/', storage });
+const fs = require('fs');
+
 const { 
   getCompanyById,
   getCompanies,
@@ -7,6 +12,9 @@ const {
   addTag,
   removeTag,
   editTag,
+  addPermission,
+  editPermission,
+  removePermission,
  } = require('../lib/database/dbEngine/companyDbEngine');
 
 const router = express.Router();
@@ -22,14 +30,19 @@ router.get('/getCompanyById', async (req, res, next) => {
   res.json(data);
 });
 
-router.post(`/add`, async (req, res, next) => {
+router.post(`/add`, upload.single('logoImg'), async (req, res, next) => {
   const newCompany = req.body;
+  newCompany.logoImg = req.file?.buffer;
+  newCompany.avaiableTags = [];
+  newCompany.permissions = [];
   await addCompany(newCompany);
   res.json({ success: true });
 });
 
-router.patch(`/edit`, async (req, res, next) => {
+router.post(`/edit`, upload.single('logoImg'), async (req, res, next) => {
   const company = req.body;
+  company.logoImg = req.file?.buffer;
+  company.avaiableTags = company.avaiableTags.split(',');
   await editCompany(company);
   res.json({ success: true });
 });
@@ -49,6 +62,18 @@ router.patch(`/tag-edit`, async (req, res, next) => {
 router.patch(`/tag-remove`, async (req, res, next) => {
   const { companyId, tag} = req.query;
   await removeTag(companyId, tag);
+  res.json({ success: true });
+});
+
+router.patch(`/permission-add`, async (req, res, next) => {
+  const { companyId, permission} = req.query;
+  await addPermission(companyId, permission);
+  res.json({ success: true });
+});
+
+router.patch(`/permission-remove`, async (req, res, next) => {
+  const { companyId, permission} = req.query;
+  await removePermission(companyId, permission);
   res.json({ success: true });
 });
 

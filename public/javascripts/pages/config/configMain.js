@@ -1,6 +1,7 @@
-import { addAvaiableTag, getCompanyById, removeAvaiableTag, updateAvaiableTag } from '../../api/companyAPI.js';
+import { addAvaiableTag, addEditCompany, getCompanyById, removeAvaiableTag, updateAvaiableTag } from '../../api/companyAPI.js';
 import { addProduct, deleteProduct, editProduct, getAllProducts, getProductByProductId } from '../../api/productAPI.js';
 import { addService, deleteService, editService, getServicesByCompanyId } from '../../api/serviceAPI.js';
+import CompanyForm from '../../forms/childForms/CompanyForm.js';
 import ProductForm from '../../forms/childForms/ProductForm.js';
 import Form from '../../forms/Form.js';
 import { businessInfo, productList, serviceList, tagList } from '../../htmlTemplate/configHtml.js';
@@ -9,30 +10,52 @@ const serviceUl = document.querySelector('.serviceUl');
 const tagUl = document.querySelector('.tagUl');
 const businessInfoDiv = document.querySelector('.businessInfoDiv');
 const companyId = document.querySelector('#container').dataset.id;
-let companyTags = [];
+let company = {};
 
 const configInit = async (companyId) => {
   const productUl = document.querySelector('.productUl');
   const { data } = await getServicesByCompanyId(companyId);
   const products = await getAllProducts(companyId);
-  const { 
-    businessName,
-    address,
-    phone,
-    avaiableTags } = await getCompanyById(companyId);
-  companyTags = avaiableTags;
+  company = await getCompanyById(companyId);
   serviceUl.innerHTML = data.map((service) => serviceList(service)).join('');
-  tagUl.innerHTML = avaiableTags.map((tag) => tagList(tag)).join('');
-  businessInfoDiv.innerHTML = businessInfo(
-    businessName,
-    address,
-    phone);
+  tagUl.innerHTML = company.avaiableTags.map((tag) => tagList(tag)).join('');
+  businessInfoDiv.innerHTML = businessInfo(company);
   productUl.innerHTML = (products.data.length > 0) ? products.data.map((product) => productList(product)).join('') : '';
 };
 
 const clickEvent = async (
   target
 ) => {
+  if(target.matches('.companyEdit, .companyEditIcon')) {
+    const companyInfo = {
+      crud: 'edit',
+      router: 'config',
+      data: {
+        current: company,
+      },
+      submitFunc: addEditCompany,
+      onBeforeSubmitFunc: (newData) => {
+        newData._id = target.dataset.id;
+        newData.avaiableTags = company.avaiableTags;
+        newData.permissions = company.permissions;
+        newData.date = company.date;
+      },
+      successMsg: () => `updated your business info`
+    };
+    const Company = new CompanyForm(companyInfo);
+    Company.showForm();
+  }
+
+  if(target.matches('.companyDetail, .companyDetailIcon')) {
+    const Company = new CompanyForm({
+      crud: 'detail',
+      data: {
+        current: company
+      }
+    });
+    Company.showDetail();
+  }
+
   if(target.matches('#addServiceBtn, #addServiceBtnIcon')) {
     const service = {
       router: 'config',
@@ -122,7 +145,7 @@ const clickEvent = async (
       submitFunc: updateAvaiableTag,
       onBeforeSubmitFunc: (newData) => {
         newData.companyId = companyId;
-        newData.avaiableTags = companyTags;
+        newData.avaiableTags = company.avaiableTags;
         newData.newTag = newData.name;
         newData.oldTag = target.dataset.name;
       },
